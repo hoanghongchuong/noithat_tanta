@@ -64,16 +64,13 @@
                     <div class="col-sm-6 d-flex align-items-center">
                         <div class="vision-l">
                             <h3 class="s18 bold t1 text-uppercase tit">{{@$tamnhin->name}}</h3>
-
                             <p>{!! @$tamnhin->content !!}</p>
                         </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </div>
         </div>
     </section>
-
     <section class="reason" style="background:linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9)), url({{asset('public/images/4reason.jpg')}}); background-size: cover;">
         <div class="container">
             <h2 class="s24 text-center text-white tit wow fadeInUp" data-wow-offset="120">Lý do nên chọn TANNC</h2>
