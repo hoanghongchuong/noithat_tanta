@@ -32,6 +32,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
+									@if($_GET['type']='video')
 			                    	<div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
 										<div class="form-group">
 											<img src="{{ asset('upload/news/'.$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" class="img-responsive"  alt="NO PHOTO" />
@@ -44,7 +45,9 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
-						        	<div class="form-group hidden">
+									@endif
+									@if($_GET['type']!='video')
+						        	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
 
@@ -52,6 +55,7 @@
 								      		<?php cate_news_parent($parent,0,"--",$data["parent_id"]) ?>
 								      	</select>
 									</div>
+									@endif
 							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
 								      	<input type="text" name="txtName" id="txtName" value="{!! old('txtName', isset($data) ? $data->name : null) !!}"  class="form-control" />
@@ -66,12 +70,12 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									@if($_GET['type']=='dich-vu')
+									<!-- @if($_GET['type']=='video')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
 								      	<textarea name="txtDesc" rows="5" class="form-control">{!! old('txtDesc', isset($data) ? $data->mota : null) !!}</textarea>
 									</div>
-									@endif
+									@endif -->
 									<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 								</div>
 								<div class="col-md-6 col-xs-12">

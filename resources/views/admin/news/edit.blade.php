@@ -25,7 +25,7 @@
         		
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
-	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
+	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>	                  	
 	                  	<li><a href="#tab_2" data-toggle="tab" aria-expanded="true">Nội dung</a></li>
 	                  	@if($_GET['type']=='du-an')
 	                  	<li><a href="#tab_3" data-toggle="tab" aria-expanded="true">Album ảnh</a></li>
@@ -36,6 +36,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
+		                  			@if($_GET['type']!='video')
 		                  			<div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
 										<div class="form-group">
 											<img src="{{ asset('upload/news/'.$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" width="200"  alt="NO PHOTO" />
@@ -47,9 +48,10 @@
 								    	@if ($errors->first('fImages')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
-									</div>									
+									</div>	
+									@endif								
 									<div class="clearfix"></div>
-									@if($_GET['type']=='tin-tuc')
+									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video')
 									<div class="form-group">
 								      	<label for="ten">Danh mục bài viết</label>
 								      	<select name="txtNewsCate" class="form-control">
@@ -73,12 +75,12 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									@if($_GET['type']!='gioi-thieu')
+									
 									<div class="form-group">
-								      	<label for="desc">Mô tả</label>
+								      	<label for="desc">@if($_GET['type']!='video')Mô tả @else Mã @endif</label>
 								      	<textarea name="txtDesc" rows="5" class="form-control">{{ $data->mota }}</textarea>
 									</div>
-									@endif
+									
 								</div>
 								<div class="col-md-6 col-xs-12">
 									@if($_GET['type']=='tin-tuc')
@@ -165,6 +167,7 @@
 				        	<input type="checkbox" name="status" {!! (!isset($data->status) || $data->status==1)?'checked="checked"':'' !!}> Hiển thị
 				    	</label>
 				    </div>
+				    @if($_GET['type']!='video')
 				    <div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" 
@@ -172,6 +175,7 @@
 				        	Nổi bật
 				    	</label>
 					</div>
+					@endif
 					<!-- @if($_GET['type']!='tin-tuc' && $_GET['type']!='tuyen-dung')
 			    	<div class="form-group">
 					    <label>

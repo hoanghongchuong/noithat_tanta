@@ -59,10 +59,10 @@
 								      	<label for="ten">Điện thoại</label>
 								      	<input type="text" name="txtPhone" value="{!! old('txtPhone', isset($data) ? $data->phone : null) !!}"  class="form-control" />
 									</div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 								      	<label for="ten">Hotline</label>
 								      	<input type="text" name="txtHotline" value="{!! old('txtHotline', isset($data) ? $data->hotline : null) !!}"  class="form-control" />
-									</div> -->
+									</div>
 									<div class="form-group">
 								      	<label for="ten">Mô tả</label>								      	
 								      	<textarea name="txtFax" id=""  rows="5" class="form-control">{!! old('txtFax', isset($data) ? $data->fax : null) !!}</textarea>

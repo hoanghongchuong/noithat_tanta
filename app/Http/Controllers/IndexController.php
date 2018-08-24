@@ -146,22 +146,24 @@ class IndexController extends Controller {
 		$cate_pro = DB::table('product_categories')->where('status',1)->orderby('id','asc')->get();
 		$com='d';
 		$productSale = DB::table('products')->select()->where('status',1)->where('spbc',1)->orderBy('id','desc')->take(6)->get();
-		$product_cate = DB::table('product_categories')->select()->where('status',1)->where('alias',$id)->get()->first();
+		$product_cate = ProductCate::where('status',1)->where('alias',$id)->get()->first();
 		if(!empty($product_cate)){
 			// $products = DB::table('products')->select()->where('status',1)->where('cate_id',$product_cate->id)->orderBy('stt','asc')->paginate(20);
-			$products = DB::table('products')->select()->where('status', 1)->where('cate_id',$product_cate->id);
-			$appends = [];
-			$selected = $req->sort;
-			if ($req->sort) {
-				if (isset($this->sortType[$req->sort])) {
-					$appends['sort'] = $req->sort;
-					$products = $products->orderBy($this->sortType[$req->sort]['order'][0], $this->sortType[$req->sort]['order'][1]);
-				}
-			}
-			$products = $products->paginate(9);
-			if (count($appends)) {
-				$products = $products->appends($appends);
-			}
+			$products = DB::table('products')->select()->where('status', 1);
+			$products = $product_cate->products;
+			// dd($products);
+			// $appends = [];
+			// $selected = $req->sort;
+			// if ($req->sort) {
+			// 	if (isset($this->sortType[$req->sort])) {
+			// 		$appends['sort'] = $req->sort;
+			// 		$products = $products->orderBy($this->sortType[$req->sort]['order'][0], $this->sortType[$req->sort]['order'][1]);
+			// 	}
+			// }		
+			// $products = $products->paginate(20);	
+			// if (count($appends)) {
+			// 	$products = $products->appends($appends);
+			// }
 			$banner_danhmuc = DB::table('lienket')->select()->where('status',1)->where('com','chuyen-muc')->where('link','san-pham')->get()->first();
 			$doitac = DB::table('lienket')->select()->where('status',1)->where('com','doi-tac')->orderby('stt','asc')->get();
 			$tintucs = DB::table('news')->orderBy('id','desc')->take(3)->get();
@@ -196,11 +198,11 @@ class IndexController extends Controller {
 		$product_detail = DB::table('products')->select()->where('status',1)->where('alias',$id)->get()->first();
 		if(!empty($product_detail)){
 			$banner_danhmuc = DB::table('lienket')->select()->where('status',1)->where('com','chuyen-muc')->where('link','san-pham')->get()->first();
-			// $product_khac = DB::table('products')->select()->where('status',1)->where('alias','<>',$id)->orderby('stt','desc')->take(8)->get();
+			$product_khac = DB::table('products')->select()->where('status',1)->where('alias','<>',$id)->orderBy(DB::raw('RAND()'))->take(20)->get();
 			$album_hinh = DB::table('images')->select()->where('product_id',$product_detail->id)->orderby('id','asc')->get();
 			
 			$cateProduct = DB::table('product_categories')->select('name','alias')->where('id',$product_detail->cate_id)->first();
-			$productSameCate = DB::table('products')->select()->where('status',1)->where('alias','<>',$id)->where('cate_id',$product_detail->cate_id)->orderby('stt','desc')->take(4)->get();
+			$productSameCate = DB::table('products')->select()->where('status',1)->where('alias','<>',$id)->where('cate_id',$product_detail->cate_id)->orderby('stt','desc')->take(20)->get();
 			// dd($productSameCate);
 			$setting = Cache::get('setting');
 			$productSale = DB::table('products')->select()->where('status',1)->where('spbc',1)->orderBy('id','desc')->take(4)->get();
@@ -224,15 +226,19 @@ class IndexController extends Controller {
 	public function getAbout()
 	{
 		$about = DB::table('about')->where('com','gioi-thieu')->first();
+		$sumenh = DB::table('about')->where('com','su-menh')->first();
+		$tamnhin = DB::table('about')->where('com','tam-nhin')->first();
         $com = 'gioi-thieu';
 		$slogans = DB::table('lienket')->where('com','taisao')->orderBy('stt','asc')->get();
+		$baochi = DB::table('lienket')->where('com','baochi')->get();
+		$feedback = DB::table('feedback')->orderBy('id','desc')->get();
 		 //Cấu hình SEO
 		$title = 'Giới thiệu';
 		$keyword = 'Giới thiệu';
 		$description = 'Giới thiệu';
 		// End cấu hình SEO
 
-		return view('templates.about_tpl', compact('about','keyword','description','title','img_share','com','slogans'));
+		return view('templates.about_tpl', compact('about','keyword','description','title','img_share','com','slogans','feedback','baochi','tamnhin','sumenh'));
 	}
 	public function search(Request $request)
 	{
@@ -718,10 +724,11 @@ class IndexController extends Controller {
 		return view('templates.detailKienTruc', compact('project','title','description', 'keyword','projectOther','albums'))	;
 	}
 
-	public function listNoiThat($alias){
-		$categories = DB::table('news_categories')->where('com','noi-that')->orderBy('stt','asc')->get();
-		$cate = DB::table('news_categories')->where('com','noi-that')->where('alias', $alias)->first();
-		$projects = DB::table('news')->where('status', 1)->where('com', 'noi-that')->where('cate_id', $cate->id)->orderBy('stt', 'asc')->paginate(8);
+	public function listVideo($alias){
+		
+		$cate = DB::table('news_categories')->where('com','video')->where('alias', $alias)->first();
+		$cateVideos = DB::table('news_categories')->where('com','video')->where('status', 1)->get();
+		$videos = DB::table('news')->where('status', 1)->where('com', 'video')->where('cate_id', $cate->id)->orderBy('stt', 'asc')->paginate(18);
 		if(!empty($cate->title)){
 				$title = $cate->title;
 			}else{
@@ -729,22 +736,21 @@ class IndexController extends Controller {
 			}
 			$keyword = $cate->keyword;
 			$description = $cate->description;
-		return view('templates.listnoithat', compact('projects','title','description', 'keyword','cate','categories'));
+		return view('templates.listvideo', compact('videos','title','description', 'keyword','cate','cateVideos'));
 	}
 
-	public function detailNoiThat($alias)
+	public function detailVideo($alias)
 	{		
-		$project = DB::table('news')->where('status', 1)->where('com','noi-that')->where('alias', $alias)->first();
-		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
-		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->take(4)->get();
-		if(!empty($project->title)){
-				$title = $project->title;
+		$video = DB::table('news')->where('status', 1)->where('com','video')->where('alias', $alias)->first();		
+		$videoOther = DB::table('news')->where('status', 1)->where('com', $video->com)->where('cate_id', $video->cate_id)->take(4)->get();
+		if(!empty($video->title)){
+				$title = $video->title;
 			}else{
-				$title = $project->name;
+				$title = $video->name;
 			}
-			$keyword = $project->keyword;
-			$description = $project->description;
-		return view('templates.detailNoiThat', compact('project','title','description', 'keyword','projectOther','albums'))	;
+			$keyword = $video->keyword;
+			$description = $video->description;
+		return view('templates.detailVideo', compact('video','title','description', 'keyword','videoOther'));
 	}
 
 	public function loadmoreProject(Request $req)

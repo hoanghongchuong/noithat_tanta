@@ -149,14 +149,7 @@
 		                      <label class="control-label">Chọn ảnh</label>
 		                      <input id="input-2" name="detailImg[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" data-allowed-file-extensions='["jpeg", "jpg", "png", "gif"]'>
 		                    </div>
-	                  		<!-- <div class="form-group">
-								<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm ảnh liên quan</button>
-							</div> -->
-							<!-- <div class="col-md-12">
-				                <div class="dropzone" id="my-dropzone" name="myDropzone">
-
-				                </div>
-				            </div> -->
+	                  		
 	                    	<div class="clearfix"></div>
 	                	</div><!-- /.tab-pane -->
 	                	<div class="tab-pane" id="tab_4">
@@ -192,12 +185,12 @@
 				        	<input type="checkbox" name="status" {!! (!isset($data->status) || $data->status==1)?'checked="checked"':'' !!}> Hiển thị
 				    	</label>
 				    </div>
-				    <div class="form-group">
+				    <div class="form-group hidden">
 					    <label>
 				        	<input type="checkbox" name="tinhtrang" {!! (!isset($data->tinhtrang) || $data->tinhtrang==1)?'checked="checked"':'' !!}> Còn hàng
 				    	</label>
 				    </div>
-			    	<div class="form-group">
+			    	<div class="form-group hidden">
 					    <label>
 				        	<input type="checkbox" name="noibat" {!! (!isset($data->noibat) || $data->noibat==1)?'checked="checked"':'' !!}> Nổi bật
 				    	</label>
@@ -223,63 +216,5 @@
     
 </section><!-- /.content -->
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-	    <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Thêm hình ảnh liên quan</h4>
-	    </div>
-      	<div class="modal-body">
-      		<!-- <div class="container">
-			    <div class="row">
-			        <div class="col-md-12">
-			            <h1>Upload Multiple Images using dropzone.js and Laravel</h1>
-			            {!! Form::open([ 'route' => [ 'dropzone.store' ], 'files' => true, 'enctype' => 'multipart/form-data', 'class' => 'dropzone', 'id' => 'image-upload' ]) !!}
-			            <div>
-			                <h3>Upload Multiple Image By Click On Box</h3>
-			            </div>
-			            {!! Form::close() !!}
-			        </div>
-			    </div>
-			</div>
-
-			<script type="text/javascript">
-			        Dropzone.options.imageUpload = {
-			            maxFilesize         :       1,
-			            acceptedFiles: ".jpeg,.jpg,.png,.gif"
-			        };
-			</script> -->
-      		<div class="row">
-		        <div class="col-md-12">
-		        
-			        <form method="post" id="upload" action="{{ route('admin.uploadImg') }}" enctype="multipart/form-data">
-			        	<input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-			            <div class="row">
-			                <div class="col-md-4">
-			                    <div id="drop">
-			                        Kéo thả hình vào đây
-
-			                        <a>Chọn</a>
-			                        <input type="file" name="upl" multiple />
-			                    </div>
-			                </div>
-			                <div class="col-md-8">
-			                    <ul id="list_uploaded">
-			                    </ul>
-			                </div>
-			            </div>
-			        </form>
-		        </div>
-		    </div>
-      	</div>
-      	<div class="modal-footer">
-        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      	</div>
-    </div>
-
-  </div>
-</div>
 @endsection()

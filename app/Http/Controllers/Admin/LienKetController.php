@@ -17,7 +17,7 @@ class LienKetController extends Controller
         else if($_GET['type']=='cam-nhan') $trang='cảm nhận khách hàng';
         else if($_GET['type']=='chuyen-muc') $trang='banner chuyên mục';
         else if($_GET['type']=='chi-nhanh') $trang='chi nhánh';
-        else if($_GET['type']=='content') $trang='content';
+        else if($_GET['type']=='taisao') $trang='Tại sao chọn chúng tôi';
         else $trang ='hình ảnh';
         if(!empty($_GET['type'])){
             $com=$_GET['type'];
@@ -34,7 +34,7 @@ class LienKetController extends Controller
         else if($_GET['type']=='cam-nhan') $trang='cảm nhận khách hàng';
         else if($_GET['type']=='chuyen-muc') $trang='banner chuyên mục';
         else if($_GET['type']=='chi-nhanh') $trang='chi nhánh';
-        else if($_GET['type']=='content') $trang='content';
+        else if($_GET['type']=='taisao') $trang='Tại sao chọn chúng tôi';
         else $trang ='hình ảnh';
 
         if(!empty($_GET['type'])){
@@ -100,7 +100,7 @@ class LienKetController extends Controller
         else if($_GET['type']=='cam-nhan') $trang='cảm nhận khách hàng';
         else if($_GET['type']=='chuyen-muc') $trang='banner chuyên mục';
         else if($_GET['type']=='chi-nhanh') $trang='chi nhánh';
-        else if($_GET['type']=='content') $trang='content';
+        else if($_GET['type']=='taisao') $trang='Tại sao chọn chúng tôi';
         else $trang ='hình ảnh';
 
         if(!empty($_GET['type'])){

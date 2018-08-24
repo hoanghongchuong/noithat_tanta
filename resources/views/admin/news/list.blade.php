@@ -48,13 +48,17 @@
               <tr>
                 <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th>
                 <th class="text-center with_dieuhuong">Stt</th>
-                @if($_GET['type']=='tin-tuc')
+                @if($_GET['type']=='tin-tuc' || $_GET['type']=='video')
                 <th>Danh mục cha</th>             
                 
                 @endif
+                @if($_GET['type']!='video')
                 <th>Hình ảnh</th>
+                @endif
                 <th>Tên bài viết</th>
+                @if($_GET['type']!='video')
                 <th class="text-center with_dieuhuong">Hoạt động</th>
+                @endif
                 <th class="text-center with_dieuhuong">Sửa</th>
                 <th class="text-center with_dieuhuong">Xóa</th>
               </tr>
@@ -64,7 +68,7 @@
               <tr>
                 <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
-                @if($_GET['type']=='tin-tuc')
+                @if($_GET['type']=='tin-tuc' || @$_GET['type']=='video')
                 <td>
                   <?php  $parent = DB::table('news_categories')->where('id', $item->cate_id)->where('com', @$_GET['type'])->first();
                   ?>
@@ -75,12 +79,13 @@
                   @endif
                 </td>
                 @endif
-                <td><img src="{{ asset('upload/news/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" /></td>
-                              
-               
+                @if($_GET['type']!='video')
+                <td><img src="{{ asset('upload/news/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" />
+                </td>
+                @endif
                 <td>{{$item->name}}
                 </td>
-                               
+                @if($_GET['type']!='video')               
                 <td class="text-center with_dieuhuong">
                   <div class="form-group"> 
                     @if($item->status>0)
@@ -96,9 +101,9 @@
                     @else
                       <a href="backend/news/edit?id={{$item->id}}&noibat={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>
                     @endif
-                  </div>
-                  
+                  </div>                  
                 </td>
+                @endif
                 <td class="text-center with_dieuhuong">
                   <i class="fa fa-pencil fa-fw"></i><a href="backend/news/edit?id={{$item->id}}&type={{ @$_GET['type'] }}">Edit</a>
                 </td>

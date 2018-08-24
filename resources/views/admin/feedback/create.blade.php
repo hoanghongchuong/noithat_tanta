@@ -23,14 +23,14 @@
           
           <form name="frmAdd" method="post" action="{!! route('admin.feedback.postCreate') !!}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
-            <div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
+            <!-- <div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
                 <label for="file">File ảnh</label>
                   <input type="file" id="file" name="fImages" >
                   <p class="help-block">Width:225px - Height: 162px</p>
                   @if ($errors->first('fImages')!='')
                     <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
                     @endif
-              </div>
+            </div> -->
               
             <div class="clearfix"></div>
             
@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Chức vụ</label>
+                <label for="">Địa chỉ</label>
 				        <input type="text" name="position" class="form-control" value="">		
                 
               </div>
@@ -50,7 +50,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="">Nội dung</label>
-				<textarea  name="content" id="txtContent" class="form-control" value=""></textarea>	
+				        <textarea  name="content" id="txtContent" class="form-control" value=""></textarea>	
                 
               </div>
             </div>

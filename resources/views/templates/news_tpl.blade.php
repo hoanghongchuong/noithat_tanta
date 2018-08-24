@@ -4,29 +4,28 @@
     $setting = Cache::get('setting');
     $banner = DB::table('banner_content')->where('position', 2)->first();
 ?>
-<style type="text/css">
+<style>
     /* slider */
-    .slider-area {
-        position: relative;
-        z-index: 1;
-    }
-    .nivo-caption {
-        background: transparent;
-        padding: 0;
-    }
-    .break-wrap {
-        background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.6)), url('./images/break.jpg');
-        background-size: cover;
-        /* opacity: .4; */
-    }
-    .regis {
-        background: url(./images/38.jpg) no-repeat top center;
-        background-size: cover;
-    }
+        .slider-area {
+            position: relative;
+            z-index: 1;
+        }
+        .nivo-caption {
+            background: transparent;
+            padding: 0;
+        }
+        .break-wrap {
+            background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.6)), url('./public/images/break.jpg');
+            background-size: cover;
+            /* opacity: .4; */
+        }
+        .regis {
+            background: url(./images/38.jpg) no-repeat top center;
+            background-size: cover;
+        }
 </style>
-
 <main class="b1 index">
-    <section class="bread-wrap">
+    <section class="bread-wrap" style="background: url({{ asset('upload/banner/'.$banner->image) }})">
         <div class="container">
             <h1 class="t3 text-center s30 bread-tit">Tin tức</h1>
             <ul class="s15 list-unstyled justify-content-center bread op7 text-center">
@@ -107,11 +106,11 @@
 
     <section class="b2 pt-4 break">
         <div class="container">
-            <div class="break-wrap">
+            <div class="break-wrap" style="background: url({{ asset('public/images/break.jpg') }})">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="d-flex align-items-center justify-content-center">
-                            <img class="wow tada" data-wow-iteration="infinite" src="images/phone.png" title="" alt="">
+                            <img class="wow tada" data-wow-iteration="infinite" src="{{ asset('public/images/phone.png')}}" title="" alt="">
 
                             <div class="text-white break-info">
                                 <h2 class="s24 op7 pb-2 bold text-uppercase">Đăng ký nhận tư vấn thiết kế nội thất</h2>
@@ -122,7 +121,7 @@
 
                     <div class="col-lg-5">
                         <div class="d-flex align-items-center justify-content-center py-3 break-r">
-                            <a href="tel:0947499660" title="" title="" class="btn text-uppercase phone-btn">Liên hệ ngay</a>
+                            <a href="tel:{{ $setting->phone }}" title="" title="" class="btn text-uppercase phone-btn">Liên hệ ngay</a>
                         </div>
                     </div>
                 </div>
@@ -130,35 +129,6 @@
         </div>
     </section>
 
-    <section class="b2 brand">
-        <div class="container">
-            <div class="brand-slider brand-border">
-                <div class="brand-item">
-                    <img src="images/5.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/6.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/7.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/8.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/9.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/5.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/6.png" alt="" title="">
-                </div>
-                <div class="brand-item">
-                    <img src="images/7.png" alt="" title="">
-                </div>
-            </div>
-        </div>
-    </section>
+    
 </main>
 @endsection

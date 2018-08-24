@@ -58,13 +58,24 @@
 					      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
 					      	@endif
 						</div>
-						
+						@if($_GET['type']=='baochi')
+						<div class="form-group">
+					      	<label for="alias">Link liên kết</label>
+					      	<input type="text" name="txtLink" id="" value="{{ $data->link }}"  class="form-control" />
+						</div>
+						@endif
+						@if($_GET['type']=='baochi')
+						<div class="form-group">
+					      	<label for="alias">Nguồn</label>
+					      	<input type="text" name="txtContent" id="" value="{{ $data->content }}"  class="form-control" />
+						</div>
+						@endif
 						<!-- <div class="form-group">
 					      	<label for="alias">Link liên kết</label>
 					      	<input type="text" name="txtLink" id="txtLink" value="{{ $data->link }}"  class="form-control" />
 						</div> -->
 						
-						@if($_GET['type']!='taisao')
+						@if($_GET['type']=='taisao' || $_GET['type']=='baochi')
 						<div class="form-group">
 					      	<label for="desc">Mô tả</label>
 					      	<textarea name="txtDesc" rows="5" class="form-control">{{ $data->mota }}</textarea>

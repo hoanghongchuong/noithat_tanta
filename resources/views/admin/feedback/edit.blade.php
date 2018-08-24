@@ -24,7 +24,7 @@
           <form name="frmAdd" method="post" action="backend/feedback/edit/{{$data->id}}" enctype="multipart/form-data">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}" />
             <div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
-                <div class="form-group" >
+                <!-- <div class="form-group" >
                   <div class="form-group">
                     <img src="{{ asset('upload/hinhanh/'.@$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" width="200"  alt="NO PHOTO" />
                     <input type="hidden" name="img_current" value="{!! @$data->photo !!}">
@@ -32,7 +32,7 @@
                   <label for="file">Chọn File ảnh</label>
                     <input type="file" id="file" name="fImages" >
                     <p class="help-block">Width:225px - Height: 162px</p>
-                </div>
+                </div> -->
             </div>
             <div class="clearfix"></div>
             
@@ -44,7 +44,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="">Chức vụ</label>
+                <label for="">Địa chỉ</label>
 				          <input type="text" name="position" class="form-control" value="{{$data->position}}">		
                 
               </div>
@@ -52,7 +52,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="">Nội dung</label>
-				<textarea  name="content" id="txtContent" class="form-control" value="">{{$data->content}}</textarea>	
+				        <textarea  name="content" id="txtContent" class="form-control" value="">{{$data->content}}</textarea>	
                 
               </div>
             </div>

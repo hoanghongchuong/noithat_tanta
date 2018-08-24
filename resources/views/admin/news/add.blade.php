@@ -26,7 +26,7 @@
 	      		
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
-	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
+	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>	                  	
 	                  	<li><a href="#tab_2" data-toggle="tab" aria-expanded="true">Nội dung</a></li>
 	                  	@if($_GET['type']=='du-an')
 	                  	<li><a href="#tab_5" data-toggle="tab" aria-expanded="true">Album ảnh</a></li>
@@ -44,7 +44,7 @@
 						        			@endforeach
 						        		</div>
 						        	@endif
-						        	
+						        	@if($_GET['type']!='video')
 									<div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
 										<label for="file">File ảnh</label>
 								     	<input type="file" id="file" name="fImages" >
@@ -53,9 +53,9 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
-									
+									@endif
 									<div class="clearfix"></div>
-									@if($_GET['type']=='tin-tuc')
+									@if($_GET['type']=='tin-tuc' | $_GET['type']=='video')
 									<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
@@ -81,7 +81,7 @@
 									</div>
 									
 									<div class="form-group">
-								      	<label for="desc">Mô tả</label>
+								      	<label for="desc">@if($_GET['type']!='video')Mô tả @else Mã @endif</label>
 								      	<textarea name="txtDesc"  rows="5" class="form-control"></textarea>
 									</div>
 									
@@ -147,12 +147,13 @@
 	            <div class="clearfix"></div>
 
 			    <div class="col-md-6">
-			    	
+			    	@if($_GET['type']!='video')
 			    	<div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" >Nổi bật
 				    	</label>
 					</div>
+					@endif
 					<!-- @if($_GET['type']!='tin-tuc' && $_GET['type']!='tuyen-dung')
 					<div class="form-group">
 					    <label>

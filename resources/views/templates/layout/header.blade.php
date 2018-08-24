@@ -1,6 +1,7 @@
 <?php
     $setting = Cache::get('setting');
     $categories = DB::table('product_categories')->where('parent_id',0)->get();
+    $cateVideos = DB::table('news_categories')->where('com','video')->where('status',1)->get();
 ?>
 <h1 class="sr-only">Tân Tạ</h1>
     <header class="fixed-top top">
@@ -91,8 +92,9 @@
                             </li>
                             <li class="@if(@$com == 'video') active @endif"><a href="javascript:0;" title="">Video</a>
                                 <ul>
-                                    <li><a href="video.html" title="">Thiết kế - Thi công nội thất</a></li>
-                                    <li><a href="video.html" title="">Thiết kế - Thi công ngoại thất</a></li>
+                                    @foreach($cateVideos as $cateVideo)
+                                    <li><a href="{{url('video/'.$cateVideo->alias)}}" title="{{$cateVideo->name}}">{{$cateVideo->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>

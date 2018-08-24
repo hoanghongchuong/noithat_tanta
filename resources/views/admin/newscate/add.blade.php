@@ -34,6 +34,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
+		                  			@if($_GET['type']='video')
 		                  			<div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
 										<label for="file">File ảnh</label>
 								     	<input type="file" id="file" name="fImages" >
@@ -42,7 +43,9 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
-			                    	<div class="form-group hidden">
+									@endif
+									@if($_GET['type']!='video')
+			                    	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
 
@@ -50,6 +53,7 @@
 								      		<?php cate_news_parent($parent); ?>
 								      	</select>
 									</div>
+									@endif
 									<div class="clearfix"></div>
 							    	<div class="form-group @if ($errors->first('txtName')!='') has-error @endif">
 								      	<label for="ten">Tên</label>
@@ -65,12 +69,12 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									@if($_GET['type']=='khong-gian')
+									<!-- @if($_GET['type']=='video')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
 								      	<textarea name="txtDesc" rows="5" class="form-control"></textarea>
 									</div>
-									@endif
+									@endif -->
 									<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 								</div>
 								<div class="col-md-6 col-xs-12">

@@ -4,132 +4,150 @@
     $setting = Cache::get('setting');
     $about = Cache::get('about');
 ?>
-<div class="product">
-    <div class="container">
-        <div class="scholl_alias row">
-            <a href="{{ url('') }}">Trang chủ <i class="fa fa-angle-right"></i></a>
-            <a href="{{url('san-pham/'.@$cateProduct->alias)}}">{{@$cateProduct->name}}<i class="fa fa-angle-right"></i></a>
-            <a href="#">{{$product_detail->name}}</a>
+<style type="text/css">
+    .nivo-caption {
+        background: transparent;
+    }
+</style>
+<main class="b1 index">
+    <section class="bread-wrap mb-3 ic-detail-bread">
+        <div class="container">
+            <ul class="s15 list-unstyled justify-content-center bread op7 text-center">
+                <li><a href="{{url('')}}" title="">Trang chủ</a></li>
+                <li><a href="{{url('san-pham')}}" title="">Sản phẩm</a></li>
+                <li><a href="{{url('san-pham/'.$cateProduct->alias)}}" title="">{{$cateProduct->name}}</a></li>
+                <li>{{ $product_detail->name }}</li>
+            </ul>
         </div>
+    </section>
 
-        <div class="p-detail">
+    <section class="b2 pdetail">
+        <div class="container">
             <div class="row">
-                <div class="col-sm-5 col-md-5 col-lg-5">
-                    <ul class="p_bxslider">
-                        @if(count($album_hinh) > 0)
-                            @foreach($album_hinh as $a)
-                            <li><img src="{{asset('upload/hasp/'.$a->photo)}}" class="img-responsive"/></li>
-                            @endforeach
-                        @else
-                            <li><img src="{{asset('upload/product/'.$product_detail->photo)}}" class="img-responsive" alt=""></li>
-                        @endif
-                </ul>
-                <center>
-                <div id="p-pager">
-                    @if(count($album_hinh) > 0)
-                        @foreach($album_hinh as $k=>$a)
-                        <a data-slide-index="{{$k}}">
-                            <img src="{{asset('upload/hasp/'.$a->photo)}}" />
-                        </a>
-                    @endforeach
-                    @else 
-                    <a data-slide-index="0">
-                        <img src="{{asset('upload/product/'.$product_detail->photo)}}" />
-                    </a>
-                    @endif
-                </div>
-                </center>
-                </div>
-                <div class="col-sm-7 col-md-7 col-lg-7 p-info">
-                    <p class="p-name">{{$product_detail->name}}</p>
-                    <p class="news-social">
-
-                        <div class="addthis_toolbox addthis_default_style" style="margin-top:10px;">
-
-                            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-
-                            <a class="addthis_button_tweet"></a>
-
-                            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-
-                            <a class="addthis_counter addthis_pill_style"></a>
-
-                        </div>
-
-                            <script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
-
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52843d4e1ff0313a"></script>
-
-                    </p>
-                    <p class="p-price">{{number_format($product_detail->price)}}</p>
-                    <p class="p-bh">
-                        <strong>Tình trạng:</strong> @if($product_detail->tinhtrang == 1) Còn hàng @else Hết hàng @endif
-                    </p>
-                    <div class="km-box">
-                        <h4>Thông tin sản phẩm</h4>
-                        <div class="km-box-content">
-                            {!! $product_detail->mota !!}
-                        </div>
-                    </div>
-                    <div class=" p-buy">
-                        <div style="text-align: center;">
-                            <a href="{{url('lien-he')}}" class="btn btn-default p-buy-1">LIÊN HỆ</a>
-                        </div>
-                        
-                        <div class="p-contact">
-                            <div class="col-xs-6 col-sm-5 pr0">
-                                <img src="{{ asset('public/images/icon-dt.png')}}" width="25px">&nbsp; Gọi tư vấn:
+                <div class="col-md-6">
+                    <div class="">
+                        <div class="slider pdetail-for">
+                            @if(count($album_hinh) > 0)
+                                @foreach($album_hinh as $album)
+                                <div class="text-center">
+                                    <img src="{{asset('upload/hasp/'.$album->photo)}}" alt="">
+                                </div>
+                                @endforeach
+                            @else
+                            <div class="text-center">
+                                <img src="{{asset('upload/product/'.$product_detail->photo)}}" alt="">
                             </div>
-                            <div class="col-xs-6 col-sm-7 pl0">
-                                <p>{{$setting->phone}} - {{$setting->hotline}}</p>
-                            </div>
+                            @endif
+                        </div>
+                        <div class="slider pdetail-nav">
+                            @if(count($album_hinh) > 0)
+                                @foreach($album_hinh as $album)
+                                <div>
+                                    <img src="{{asset('upload/hasp/'.$album->photo)}}" alt="">
+                                </div>
+                                @endforeach
+                            @else
+                                <div>
+                                    <img src="{{asset('upload/product/'.$product_detail->photo)}}" alt="">
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="col-md-6">
+                    <h1 class="s30 pdetail-tit">{{ $product_detail->name }}</h1>
+                    <h2 class="t1 medium s24 pb-3 pdetail-price">{{number_format($product_detail->price)}} đ</h2>
+                    <!-- <ul class="list-unstyled pdetail-list">
+                        <li>Độ dày của da từ 1.2 - 1.4mm</li>
+                        <li>Bên trong: Mút đàn hồi kết hợp lông vũ</li>
+                        <li>Chân inox đánh bóng</li>
+                        <li>Khung: gỗ đầu đã qua xử lý và plywood</li>
+                        <li>Da bảo hành 24 tháng, khung bảo hành trọn đời</li>
+                    </ul> -->
+                    <div class="des-product">
+                        {!! $product_detail->mota !!}
+                    </div>
+                    <div class="d-flex align-items-center pdetail-phone s30">
+                        <img class="wow tada" data-wow-iteration="infinite" src="{{ asset('public/images/phone3.png')}}" title="" alt="">
+                        <span>Gọi đặt mua <a class="bold" href="tel:{{$setting->hotline}}" title="">{{$setting->hotline}}</a></span>
+                    </div>
+
+                    <div class="pt-4 pdetail-cm">
+                        <div class="fb-like" data-href="{{URL::Current()}}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="p_review">
-            <div class="row">
-                <div class=" col-sm-12 col-md-12 col-lg-12">
-                    <div>
-                      <!-- Nav tabs -->
-                      <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Chi tiết sản phẩm</a></li>
-                      </ul>
+            
 
-                      <!-- Tab panes -->
-                      <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="home">
-                            {!! $product_detail->content !!}
-                        </div>
-                      </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="pdetail-content">
+                        <h3 class="s24 pb-3 pdetail-info">Thông tin sản phẩm</h3>
+                        {!! $product_detail->content !!}
 
+                        <!-- <div class="text-center">
+                            <img src="images/88.jpg" title="" alt="">
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
-        @if(count($productSameCate) > 0)
-        <div class="same_pro">
-            <h2 class="box-title"><span class="title">Sản phẩm liên quan</span></h2>
-            <div class="row">
-                @foreach($productSameCate as $ps)
-                <div class="col-sm-3 col-md-3 col-lg-3">
-                    <div class="p-block">
-                        <a href="{{url('san-pham/'.$ps->alias.'.html')}}">
-                            <img src="{{asset('upload/product/'.$ps->photo)}}" alt="">
-                            <div class="p-desc">
-                                <p class="p-name">{{$ps->name}}</p>
-                                <!-- <p>Hiện đại, ưu tín</p> -->
-                            </div>  
-                        </a>
-                    </div>
-                </div>
+    </section>
+
+    <section class="b3 project">
+        <div class="container">
+            <h2 class="s30 text-center t12 pb-5 pj-tit">Sản phẩm khác</h2>
+
+            <div class="pdetail-slider">
+                @foreach($product_khac as $item)
+                <article class="pitem">
+                    <figure class="text-center pitem-img">
+                        <a href="{{ url('san-pham/'.$item->alias.'.html') }}" title="{{$item->name}}"><img src="{{asset('upload/product/'.$item->photo)}}" title="{{$item->name}}" alt="{{$item->name}}"></a>
+                    </figure>
+
+                    <figcaption class="pitem-info">
+                        <h3 class="pitem-info-tit"><a title="{{$item->name}}" href="{{ url('san-pham/'.$item->alias.'.html') }}">{{$item->name}}</a></h3>
+                        <h4 class="t1 medium pitem-price">
+                            {{number_format($item->price)}} đ
+                        </h4>
+                    </figcaption>
+                </article>
                 @endforeach
             </div>
         </div>
-        @endif
-    </div>
-</div>
+    </section>
+
+    <section class="b2 brand">
+        <div class="container">
+            <div class="brand-slider">
+                <div class="brand-item">
+                    <img src="images/5.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/6.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/7.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/8.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/9.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/5.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/6.png" alt="" title="">
+                </div>
+                <div class="brand-item">
+                    <img src="images/7.png" alt="" title="">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 @endsection

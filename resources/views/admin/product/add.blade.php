@@ -157,12 +157,12 @@
 				        	<input type="checkbox" name="status" checked="checked"> Hiển thị
 				    	</label>
 				    </div>
-				    <div class="form-group">
+				    <div class="form-group hidden">
 					    <label>
 				        	<input type="checkbox" name="tinhtrang" checked="checked"> Còn hàng
 				    	</label>
 				    </div>
-			    	<div class="form-group">
+			    	<div class="form-group hidden">
 					    <label>
 				        	<input type="checkbox" name="noibat"> Nổi bật
 				    	</label>

@@ -17,13 +17,13 @@ class FeedbackController extends Controller
     	return view('admin.feedback.create');
     }
     public function postCreate(Request $request){
-    	// $img = $request->file('fImages');
-     //    $path_img='upload/hinhanh';
-     //    $img_name='';
-     //    if(!empty($img)){
-     //        $img_name=time().'_'.$img->getClientOriginalName();
-     //        $img->move($path_img,$img_name);
-     //    }
+    	$img = $request->file('fImages');
+        $path_img='upload/hinhanh';
+        $img_name='';
+        if(!empty($img)){
+            $img_name=time().'_'.$img->getClientOriginalName();
+            $img->move($path_img,$img_name);
+        }
         $data = new Feedback;
         $data->name = $request->name;
         $data->photo = $img_name; 

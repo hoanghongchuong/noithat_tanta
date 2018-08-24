@@ -33,8 +33,8 @@
 	                <div class="tab-content">
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
-		                  		<!-- <div class="col-md-6 col-xs-12">
-		                  			@if($_GET['type']=='gioi-thieu')
+		                  		<div class="col-md-6 col-xs-12">
+		                  			@if($_GET['type']=='gioi-thieu' || $_GET['type']=='tam-nhin' || $_GET['type']=='su-menh')
 									<div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
 										<div class="form-group">
 											<img src="{{ asset('upload/hinhanh/'.$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" class="img-responsive"  alt="NO PHOTO" />
@@ -47,23 +47,23 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
-									@endif
-							    	<div class="form-group hidden">
+									
+							    	<div class="form-group">
 								      	<label for="ten">Tên</label>
 								      	<input type="text" name="txtName" id="txtName" value="{{ @$data->name }}"  class="form-control" />
 									</div>
+									@endif
 									
 									
-									
-									<div class="form-group hidden @if ($errors->first('txtAlias')!='') has-error @endif">
+									<!-- <div class="form-group hidden @if ($errors->first('txtAlias')!='') has-error @endif">
 								      	<label for="alias">Đường dẫn tĩnh</label>
 								      	<input type="text" name="txtAlias" id="txtAlias" value="{{ @$data->alias }}"  class="form-control" />
 								      	@if ($errors->first('txtAlias')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
-									</div>
+									</div> -->
 									
-								</div> -->
+								</div>
 								<input type="hidden" name="txtCom" value="{{ old('txtCom', isset($data) ? @$data->com : null) }}">
 								<div class="clearfix"></div>
 								
@@ -91,7 +91,7 @@
 							                </div>
 						                </div>
 						                <div class="box-body pad">
-						        			<textarea name="txtContent" @if($_GET['type']=='gioi-thieu') id="txtContent" class="form-control" @endif cols="100" rows="5">{{ @$data->content }}</textarea>
+						        			<textarea name="txtContent"  id="txtContent" class="form-control" cols="100" rows="5">{{ @$data->content }}</textarea>
 						        		</div>
 						        	</div>
 								</div>
@@ -130,7 +130,7 @@
 			    	<div class="row">
 						<div class="col-md-6">
 					    	<button type="submit" class="btn btn-primary">Cập nhật</button>
-					    	<button type="button" class="btn btn-danger" onclick="javascript:window.location='backend/about?type={{ @$_GET[type] }}'">Thoát</button>
+					    	<!-- <button type="button" class="btn btn-danger" onclick="javascript:window.location='backend/about?type={{ @$_GET[type] }}'">Thoát</button> -->
 				    	</div>
 			    	</div>
 			  	</div>

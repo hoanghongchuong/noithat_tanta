@@ -24,6 +24,10 @@ Route::get('tin-tuc',['as'=>'getNews', 'uses'=>'IndexController@getNews']);
 Route::get('tin-tuc/{id}.html',['as'=>'getNewsDetail', 'uses'=>'IndexController@getNewsDetail']);
 Route::get('tin-tuc/{id}',['as'=>'getListNews', 'uses'=>'IndexController@getListNews']);
 
+Route::get('video', 'IndexController@video')->name('video');
+Route::get('video/{alias}.html', 'IndexController@detailVideo');
+Route::get('video/{alias}', 'IndexController@listVideo');
+
 Route::get('du-an', 'IndexController@duan')->name('duan');
 Route::get('du-an/{alias}.html', 'IndexController@detailProject');
 Route::get('du-an/{alias}', 'IndexController@listProject');

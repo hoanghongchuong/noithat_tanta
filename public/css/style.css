@@ -888,3 +888,21 @@ main{padding-top:79px;background-color:#fff;}
 @media (max-width:575px){}
 @media (max-width:375px){}
 @media (max-width:320px){}
+/* slider */
+		.slider-area {
+			position: relative;
+			z-index: 1;
+		}
+		.nivo-caption {
+			background: transparent;
+			padding: 0;
+		}
+		.break-wrap {
+			background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.6)), url('./images/break.jpg');
+			background-size: cover;
+			/* opacity: .4; */
+		}
+		.regis {
+			background: url(./images/38.jpg) no-repeat top center;
+			background-size: cover;
+		}

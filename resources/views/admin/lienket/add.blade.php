@@ -48,14 +48,20 @@
 				      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtName'); !!}</label>
 				      	@endif
 					</div>
-					
-					<!-- <div class="form-group">
+					@if($_GET['type']=='baochi')
+					<div class="form-group">
 				      	<label for="alias">Link liên kết</label>
-				      	<input type="text" name="txtLink" id="txtLink" value=""  class="form-control" />
-					</div> -->
+				      	<input type="text" name="txtLink" id="" value=""  class="form-control" />
+					</div>
+					@endif
+					@if($_GET['type']=='baochi')
+					<div class="form-group">
+				      	<label for="alias">Nguồn</label>
+				      	<input type="text" name="txtContent" id="" value=""  class="form-control" />
+					</div>
+					@endif
 					
-					
-					@if($_GET['type']!='taisao')
+					@if($_GET['type']=='taisao' || $_GET['type']=='baochi')
 					<div class="form-group">
 				      	<label for="desc">Mô tả</label>
 				      	<textarea name="txtDesc" rows="5" class="form-control"></textarea>
