@@ -66,8 +66,8 @@ $(document).ready(function($) {
         controlNavThumbs: false,
         pauseOnHover: true,
         manualAdvance: false,
-        prevText: '<img src="images/left1.png" title="" alt="">',
-        nextText: '<img src="images/right1.png" title="" alt="">',
+        prevText: '<img src=" '+ baseUrl() + '/public/images/left1.png" title="" alt="">',
+        nextText: '<img src="'+ baseUrl() + '/public/images/right1.png" title="" alt="">',
         randomStart: true,
         beforeChange: function() {},
         afterChange: function() {},
@@ -83,8 +83,8 @@ $(document).ready(function($) {
         speed: 300,
         slidesToShow: 5,
         slidesToScroll: 1,
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right1.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left1.png" alt="" title=""></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right1.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left1.png" alt="" title=""></button>',
         responsive: [{
             breakpoint: 1200,
             settings: {
@@ -110,8 +110,8 @@ $(document).ready(function($) {
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 1,
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left.png" alt="" title=""></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left.png" alt="" title=""></button>',
         responsive: [{
             breakpoint: 992,
             settings: {
@@ -132,8 +132,8 @@ $(document).ready(function($) {
         autoplay: true,
         slidesToShow: 2,
         slidesToScroll: 1,
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left.png" alt="" title=""></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left.png" alt="" title=""></button>',
         responsive: [{
             breakpoint: 560,
             settings: {
@@ -174,8 +174,8 @@ $(document).ready(function($) {
         infinite: true,
         autoplay: true,
         speed: 300,
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right2.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left2.png" alt="" title=""></button>'
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right2.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left2.png" alt="" title=""></button>'
     });
     $('.tes2-slider').slick({
         dots: true,
@@ -233,8 +233,8 @@ $(document).ready(function($) {
         infinite: true,
         speed: 300,
         slidesToShow: 3,
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right1.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left1.png" alt="" title=""></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right1.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left1.png" alt="" title=""></button>',
         slidesToScroll: 1,
         centerMode: true,
         responsive: [{
@@ -251,8 +251,8 @@ $(document).ready(function($) {
         dots: false,
         autoplay: true,
         asNavFor: '.slider-nav',
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right1.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left1.png" alt="" title=""></button>'
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right1.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left1.png" alt="" title=""></button>'
     });
     $('.slider-nav').slick({
         slidesToShow: 5,
@@ -280,8 +280,8 @@ $(document).ready(function($) {
         dots: false,
         autoplay: true,
         asNavFor: '.pdetail-nav',
-        nextArrow: '<button type="button" class="slick-next"><img src="images/right3.png" alt="" title=""></button>',
-        prevArrow: '<button type="button" class="slick-prev"><img src="images/left3.png" alt="" title=""></button>'
+        nextArrow: '<button type="button" class="slick-next"><img src="'+ baseUrl() + '/public/images/right3.png" alt="" title=""></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="'+ baseUrl() + '/public/images/left3.png" alt="" title=""></button>'
     });
     $('.pdetail-nav').slick({
         slidesToShow: 5,

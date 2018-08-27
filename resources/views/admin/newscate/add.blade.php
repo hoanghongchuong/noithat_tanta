@@ -34,7 +34,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
-		                  			@if($_GET['type']=='video')
+		                  			@if($_GET['type']=='video' || $_GET['type']=='du-an')
 		                  			<div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
 										<label for="file">File ảnh</label>
 								     	<input type="file" id="file" name="fImages" >
@@ -48,7 +48,6 @@
 			                    	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
-
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_news_parent($parent); ?>
 								      	</select>
@@ -69,12 +68,12 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									<!-- @if($_GET['type']=='video')
+									@if($_GET['type']=='du-an')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
-								      	<textarea name="txtDesc" rows="5" class="form-control"></textarea>
+								      	<textarea name="txtDesc" rows="5" id="txtContent" class="form-control"></textarea>
 									</div>
-									@endif -->
+									@endif
 									<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 								</div>
 								<div class="col-md-6 col-xs-12">

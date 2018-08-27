@@ -32,7 +32,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
-									@if($_GET['type']=='video')
+									@if($_GET['type']=='video' || $_GET['type']=='du-an')
 			                    	<div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
 										<div class="form-group">
 											<img src="{{ asset('upload/news/'.$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" class="img-responsive"  alt="NO PHOTO" />
@@ -70,12 +70,12 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									<!-- @if($_GET['type']=='video')
+									@if($_GET['type']=='du-an')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
-								      	<textarea name="txtDesc" rows="5" class="form-control">{!! old('txtDesc', isset($data) ? $data->mota : null) !!}</textarea>
+								      	<textarea name="txtDesc" rows="5" id="txtContent" class="form-control">{!! old('txtDesc', isset($data) ? $data->mota : null) !!}</textarea>
 									</div>
-									@endif -->
+									@endif
 									<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 								</div>
 								<div class="col-md-6 col-xs-12">

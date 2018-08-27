@@ -669,8 +669,19 @@ class IndexController extends Controller {
 
 	public function listProject($alias)
 	{
-		$cate = DB::table('news_categories')->where('alias', $alias)->first();
-		$projects = DB::table('news')->where('status', 1)->where('com', 'du-an')->where('cate_id', $cate->id)->orderBy('stt', 'asc')->get();
+		$array_alias = explode('-', $alias)	;
+        $cateId = array_pop($array_alias);
+		$cate = DB::table('news_categories')->where('id', $cateId)->first();
+		$ids=[];
+		$ids[] = $cate->id;
+		$cateChilds = DB::table('news_categories')->where('parent_id', $cate->id)->get();
+		
+		foreach($cateChilds as $child)
+		{
+			$ids[] = $child->id;
+		}
+		$projects = DB::table('news')->where('status', 1)->where('com', 'du-an')->whereIn('cate_id', $ids)->orderBy('stt', 'asc')->get();
+		$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
 		if(!empty($cate->title)){
 				$title = $cate->title;
 			}else{
@@ -678,12 +689,14 @@ class IndexController extends Controller {
 			}
 			$keyword = $cate->keyword;
 			$description = $cate->description;
-		return view('templates.listduan', compact('projects','title','description', 'keyword','cate'));
+		return view('templates.listduan', compact('projects','title','description', 'keyword','cate', 'sliders'));
 	}
 	public function detailProject($alias)
 	{		
-		$project = DB::table('news')->where('status', 1)->where('alias', $alias)->first();
+		$project = DB::table('news')->where('status', 1)->where('com','du-an')->where('alias', $alias)->first();
 		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
+		$category = DB::table('news_categories')->where('id',$project->cate_id)->first();
+		dd($category);
 		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->take(4)->get();
 		if(!empty($project->title)){
 				$title = $project->title;
@@ -694,35 +707,7 @@ class IndexController extends Controller {
 			$description = $project->description;
 		return view('templates.detailproject', compact('project','title','description', 'keyword','projectOther','albums'))	;
 	}
-
-	public function listKienTruc($alias){
-		$categories = DB::table('news_categories')->where('com','kien-truc')->orderBy('stt','asc')->get();
-		$cate = DB::table('news_categories')->where('com','kien-truc')->where('alias', $alias)->first();
-		$projects = DB::table('news')->where('status', 1)->where('com', 'kien-truc')->where('cate_id', $cate->id)->orderBy('stt', 'asc')->paginate(8);
-		if(!empty($cate->title)){
-				$title = $cate->title;
-			}else{
-				$title = $cate->name;
-			}
-			$keyword = $cate->keyword;
-			$description = $cate->description;
-		return view('templates.listkientruc', compact('projects','title','description', 'keyword','cate','categories'));
-	}
-
-	public function detailKienTruc($alias)
-	{		
-		$project = DB::table('news')->where('status', 1)->where('com','kien-truc')->where('alias', $alias)->first();
-		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
-		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->take(4)->get();
-		if(!empty($project->title)){
-				$title = $project->title;
-			}else{
-				$title = $project->name;
-			}
-			$keyword = $project->keyword;
-			$description = $project->description;
-		return view('templates.detailKienTruc', compact('project','title','description', 'keyword','projectOther','albums'))	;
-	}
+	
 
 	public function listVideo($alias){
 		

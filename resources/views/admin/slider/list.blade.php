@@ -49,7 +49,7 @@
                 <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th>
                 <th class="text-center with_dieuhuong">Stt</th>
                 <th>Tên bài viết</th>
-                <!-- <th>Hình ảnh</th> -->
+                <th>Hình ảnh</th>
                 <!-- <th class="text-center with_dieuhuong">Hoạt động</th> -->
                 <th class="text-center with_dieuhuong">Sửa</th>
                 <th class="text-center with_dieuhuong">Xóa</th>
@@ -62,7 +62,7 @@
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
                 <td>{{$item->name}}</td>
                 
-                <!-- <td><img src="{{ asset('upload/hinhanh/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" /></td> -->
+                <td><img src="{{ asset('upload/hinhanh/'.$item->photo) }}" onerror="this.src='{{ asset('public/admin_assets/images/no-image.jpg') }}';" class="img_product"  alt="NO PHOTO" /></td>
                 <!-- <td class="text-center with_dieuhuong">
                   <div class="form-group"> 
                     @if($item->status>0)

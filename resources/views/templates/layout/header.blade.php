@@ -3,6 +3,7 @@
     $categories = DB::table('product_categories')->where('parent_id',0)->get();
     $cateVideos = DB::table('news_categories')->where('com','video')->where('status',1)->get();
     $cateStyle = DB::table('news_categories')->where('com','phongcach')->where('parent_id', 0)->where('status',1)->get();
+    $cateProject = DB::table('news_categories')->where('com','du-an')->where('parent_id', 0)->where('status',1)->get();
 ?>
 <h1 class="sr-only">Tân Tạ</h1>
     <header class="fixed-top top">
@@ -57,20 +58,17 @@
                         <ul class="menu medium text-uppercase">
                             <li class="@if(@$com == 'index') active @endif"><a href="{{ url('') }}" title="">Trang chủ</a></li>
                             <li><a href="{{url('gioi-thieu')}}" title="">Giới thiệu</a></li>
-                            <li><a href="javascript:0;" title="">Thiết kế Thi công nội thất</a>
+                            @foreach($cateProject as $categoryProject)
+                            <li>
+                                <a href="javascript:0;" title="">{{$categoryProject->name}}</a>
                                 <ul>
-                                    <li><a href="inter-child.html" title="">Căn hộ chung cư</a></li>
-                                    <li><a href="inter-child.html" title="">Căn hộ cao cấp</a></li>
-                                    <li><a href="inter-child.html" title="">Khu nghỉ dưỡng</a></li>
+                                    <?php $cateChildProject = DB::table('news_categories')->where('parent_id', $categoryProject->id)->get(); ?>
+                                    @foreach($cateChildProject as $cate_project)
+                                    <li><a href="{{url('du-an/'.$cate_project->alias.'-'.$cate_project->id)}}" title="{{$cate_project->name}}">{{$cate_project->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li><a href="javascript:0;" title="">Thiết kế thi công ngoại thất</a>
-                                <ul>
-                                    <li><a href="inter-child.html" title="">Căn hộ chung cư</a></li>
-                                    <li><a href="inter-child.html" title="">Căn hộ cao cấp</a></li>
-                                    <li><a href="inter-child.html" title="">Khu nghỉ dưỡng</a></li>
-                                </ul>
-                            </li>
+                            @endforeach
                             <li class="wire-menu @if(@$com == 'san-pham') active @endif"><a href="{{url('san-pham')}}" title="">Sản phẩm</a>
                                 <ul>
                                     @foreach($categories as $category)

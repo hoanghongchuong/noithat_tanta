@@ -55,11 +55,10 @@
 									</div>
 									@endif
 									<div class="clearfix"></div>
-									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video' || $_GET['type']=='phongcach')
+									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video' || $_GET['type']=='phongcach' || $_GET['type']=='du-an')
 									<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
-
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_parent($parent,0,"--",0) ?>
 								      	</select>

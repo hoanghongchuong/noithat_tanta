@@ -104,3 +104,7 @@
     text-align: center;
     width: 37px !important;
 }
+.detail_project iframe{
+    max-width: 100%;
+    min-height: 450px;
+}

@@ -37,13 +37,6 @@ Route::get('du-an', 'IndexController@duan')->name('duan');
 Route::get('du-an/{alias}.html', 'IndexController@detailProject');
 Route::get('du-an/{alias}', 'IndexController@listProject');
 
-Route::get('kien-truc', 'IndexController@kientruc')->name('duan');
-Route::get('kien-truc/{alias}.html', 'IndexController@detailKienTruc');
-Route::get('kien-truc/{alias}', 'IndexController@listKienTruc');
-
-Route::get('noi-that', 'IndexController@noithat')->name('duan');
-Route::get('noi-that/{alias}.html', 'IndexController@detailNoiThat');
-Route::get('noi-that/{alias}', 'IndexController@listNoiThat');
 // Ajax load more project
 Route::get('loadmore/project','IndexController@loadmoreProject')->name('loadmoreProject');
 
