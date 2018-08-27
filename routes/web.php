@@ -28,6 +28,11 @@ Route::get('video', 'IndexController@video')->name('video');
 Route::get('video/{alias}.html', 'IndexController@detailVideo');
 Route::get('video/{alias}', 'IndexController@listVideo');
 
+
+Route::get('phong-cach-thiet-ke/{alias}.html', 'IndexController@detailStyle');
+Route::get('phong-cach-thiet-ke/{alias}', 'IndexController@style');
+
+
 Route::get('du-an', 'IndexController@duan')->name('duan');
 Route::get('du-an/{alias}.html', 'IndexController@detailProject');
 Route::get('du-an/{alias}', 'IndexController@listProject');

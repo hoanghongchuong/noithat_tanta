@@ -43,6 +43,16 @@
         </li> -->
         <li class="treeview">
             <a href="#">
+                <i class="fa fa-edit"></i> <span>Phong cách thiết kế</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="backend/newscate?type=phongcach"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
+                <li><a href="backend/news?type=phongcach"><i class="fa fa-circle-o"></i> <span>Bài viết </span></a></li>
+            </ul>
+        </li>
+        <li class="treeview">
+            <a href="#">
                 <i class="fa fa-edit"></i> <span>Quản lý tin tức</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>

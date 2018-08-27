@@ -51,7 +51,7 @@
 									</div>	
 									@endif								
 									<div class="clearfix"></div>
-									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video')
+									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video' || $_GET['type']=='phongcach')
 									<div class="form-group">
 								      	<label for="ten">Danh mục bài viết</label>
 								      	<select name="txtNewsCate" class="form-control">
@@ -83,7 +83,7 @@
 									
 								</div>
 								<div class="col-md-6 col-xs-12">
-									@if($_GET['type']=='tin-tuc')
+									@if($_GET['type']=='tin-tuc' || $_GET['type']=='phongcach')
 									<div class="form-group @if ($errors->first('fImagesBg')!='') has-error @endif">
 										<div class="form-group">
 											<div class="img_backgound">
@@ -167,7 +167,7 @@
 				        	<input type="checkbox" name="status" {!! (!isset($data->status) || $data->status==1)?'checked="checked"':'' !!}> Hiển thị
 				    	</label>
 				    </div>
-				    @if($_GET['type']!='video')
+				    @if($_GET['type']!='video' && $_GET['type']!='phongcach')
 				    <div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" 

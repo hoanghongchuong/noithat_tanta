@@ -753,6 +753,56 @@ class IndexController extends Controller {
 		return view('templates.detailVideo', compact('video','title','description', 'keyword','videoOther'));
 	}
 
+	public function style($alias)
+	{		
+       	$array_alias = explode('-', $alias)	;
+        $cateId = array_pop($array_alias);	
+		$cate = DB::table('news_categories')->where('status',1)->where('com','phongcach')->where('id', $cateId)->first();
+		
+		$cateChilds = DB::table('news_categories')->where('status',1)->where('com','phongcach')->where('parent_id', $cateId)->get();
+		
+		$array_cate = [];
+		if($cate){
+			$array_cate[] = $cate->id;	
+		}
+		
+		if($cateChilds){
+			foreach($cateChilds as $cate_id){
+				$array_cate[] = $cate_id->id;
+			}
+		}
+
+		$styles = DB::table('news')->where('com','phongcach')->where('status',1)->whereIn('cate_id', $array_cate)->paginate(12);
+		if(!empty($cate->title)){
+				$title = $cate->title;
+			}else{
+				$title = $cate->name;
+			}
+			$keyword = $cate->keyword;
+			$description = $cate->description;
+		return view('templates.style', compact('cate', 'cateChilds', 'styles', 'description', 'keyword', 'title','cates','cateSam'));
+	}
+
+	public function detailStyle($alias)
+	{
+		$data = DB::table('news')->where('status',1)->where('alias', $alias)->where('com','phongcach')->first();
+		$cate_data = DB::table('news_categories')->where('id', $data->cate_id)->first();
+		$categories = DB::table('news_categories')->where('parent_id', $cate_data->parent_id)->get();
+		$post = DB::table('news')->where('status',1)
+		->where('cate_id', $data->cate_id)
+		->where('com','phongcach')
+		->take(20)
+		->get();
+		if(!empty($data->title)){
+				$title = $data->title;
+			}else{
+				$title = $data->name;
+			}
+			$keyword = $data->keyword;
+			$description = $data->description;
+		return view('templates.detailStyle', compact('data', 'description','title', 'keyword','cate_data', 'categories', 'post'));
+	} 	
+
 	public function loadmoreProject(Request $req)
 	{
 		$offset = $req->offset;
@@ -761,4 +811,6 @@ class IndexController extends Controller {
 		// dd($projects);
 		return view('templates.loadmore_project', compact('projects'));
 	}
+
+
 }

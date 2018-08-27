@@ -52,9 +52,9 @@
               <tr>
                 <th style="width: 20px;"><input type="checkbox" name="chonhet" class="minimal" id="chonhet" /></th>
                 <th class="text-center with_dieuhuong">Stt</th>
-               
-                <!-- <th>Danh mục cha</th> -->
-              
+              @if($_GET['type']=='phongcach') 
+                <th>Danh mục cha</th>
+              @endif
                 <th>Tên danh mục</th>
                 <!-- <th class="text-center with_dieuhuong">Hiển thị</th> -->
                 <th class="text-center with_dieuhuong">Sửa</th>
@@ -66,8 +66,8 @@
               <tr>
                 <td><input type="checkbox" name="chon" id="chon" value="{{$item->id}}" class="chon" /></td>
                 <td class="text-center with_dieuhuong">{{$k+1}}</td>
-                
-                <!-- <td>
+                @if($_GET['type']=='phongcach') 
+                <td>
                   <?php  $parent = DB::table('news_categories')->where('id', $item->parent_id)->where('com', @$_GET['type'])->first();
                   ?>
                   @if(!empty($parent))
@@ -76,7 +76,8 @@
                     {{ 'None' }}
                   @endif
                 </td>
-                -->
+               
+                @endif
                 <td>{{$item->name}}<br>
                 
                </td>

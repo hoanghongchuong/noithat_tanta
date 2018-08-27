@@ -2,6 +2,7 @@
     $setting = Cache::get('setting');
     $categories = DB::table('product_categories')->where('parent_id',0)->get();
     $cateVideos = DB::table('news_categories')->where('com','video')->where('status',1)->get();
+    $cateStyle = DB::table('news_categories')->where('com','phongcach')->where('parent_id', 0)->where('status',1)->get();
 ?>
 <h1 class="sr-only">Tân Tạ</h1>
     <header class="fixed-top top">
@@ -86,8 +87,9 @@
                             </li>
                             <li><a href="javascript:0;" title="">Phong cách thiết kế</a>
                                 <ul>
-                                    <li><a href="dstyle.html" title="">Thiết kế - Thi công nội thất</a></li>
-                                    <li><a href="dstyle.html" title="">Thiết kế - Thi công ngoại thất</a></li>
+                                    @foreach($cateStyle as $style)
+                                    <li><a href="{{url('phong-cach-thiet-ke/'.$style->alias.'-'.$style->id)}}" title="{{$style->name}}">{{$style->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="@if(@$com == 'video') active @endif"><a href="javascript:0;" title="">Video</a>
