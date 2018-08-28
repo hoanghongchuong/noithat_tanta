@@ -57,6 +57,13 @@
         @include('templates.layout.header')    
         @yield('content')
         @include('templates.layout.footer')
+        <div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon">
+          <a href="tel:{{@$setting->hotline}}" title="Liên hệ nhanh">
+          <!-- <div class="quick-alo-ph-circle"></div> -->
+          <div class="quick-alo-ph-circle-fill"></div>
+          <div class="quick-alo-ph-img-circle"></div></a>
+        </div>
+    
 
         <script src="{{ asset('public/js/jquery.min.js')}}"></script>
         <script src="{{ asset('public/js/jquery.fancybox.min.js')}}"></script>

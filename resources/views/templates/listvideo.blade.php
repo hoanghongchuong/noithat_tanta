@@ -58,7 +58,7 @@
 							<div class="col-lg-4 col-md-6 col-sm-6">
 								<article class="video-item">
 									<figure class="text-center video-img">
-										<a href="{{ url('video/'.$video->alias.'.html') }}" title="{{$video->name}}"><img src="https://i.ytimg.com/vi/{!! $video->mota !!}/hqdefault.jpg" alt="" title=""></a>
+										<a href="{{ url('video/'.$video->alias.'.html') }}" title="{{$video->name}}"><img src="https://i.ytimg.com/vi/{!! $video->code !!}/hqdefault.jpg" alt="" title=""></a>
 									</figure>
 
 									<figcaption class="video-content">

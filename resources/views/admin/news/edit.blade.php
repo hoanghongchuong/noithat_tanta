@@ -75,9 +75,14 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									
+									@if($_GET['type']=='video')
 									<div class="form-group">
-								      	<label for="desc">@if($_GET['type']!='video')Mô tả @else Mã @endif</label>
+								      	<label for="desc">Mã video</label>
+								      	<input type="text" name="code" class="form-control" value="{{ $data->code }}">
+									</div>
+									@endif
+									<div class="form-group">
+								      	<label for="desc">Mô tả</label>
 								      	<textarea name="txtDesc" rows="5" class="form-control">{{ $data->mota }}</textarea>
 									</div>
 									
@@ -167,7 +172,7 @@
 				        	<input type="checkbox" name="status" {!! (!isset($data->status) || $data->status==1)?'checked="checked"':'' !!}> Hiển thị
 				    	</label>
 				    </div>
-				    @if($_GET['type']!='video' && $_GET['type']!='phongcach')
+				    @if($_GET['type']!='video' && $_GET['type']!='phongcach' && $_GET['type']!='du-an')
 				    <div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" 
@@ -176,13 +181,13 @@
 				    	</label>
 					</div>
 					@endif
-					<!-- @if($_GET['type']!='tin-tuc' && $_GET['type']!='tuyen-dung')
+					@if($_GET['type']=='video')
 			    	<div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="home" {{ ($data->home==1)?'checked="checked"':'' }}> Hiển thị trang chủ
 				    	</label>
 				    </div>
-				    @endif -->
+				    @endif
 			    </div>
 			    <div class="clearfix"></div>
 			    <div class="box-footer">

@@ -94,7 +94,7 @@
                       <a href="backend/news/edit?id={{$item->id}}&hienthi={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-danger btn-xs"><i class="fa fa-eye"></i> Hiển thị</a>
                     @endif
                   </div>
-                  @if($_GET['type']!='phongcach')         
+                  @if($_GET['type']!='phongcach' && $_GET['type']!='du-an')         
                   <div class="form-group"> 
                     @if($item->noibat>0)
                       <a href="backend/news/edit?id={{$item->id}}&noibat={{ time() }}&type={{ @$_GET['type'] }}" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Nổi bật</a>

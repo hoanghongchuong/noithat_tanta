@@ -1,13 +1,13 @@
-@foreach($projects as $project)
-<div class="col-md-4">
-    <div class="case-item relative">
-        <a href="{{url('du-an/'.$project->alias.'.html')}}" title="{{$project->name}}"><img src="{{ asset('upload/news/'.$project->photo) }}" alt="{{$project->name}}" title="{{$project->name}}"> </a>
-        <div class="case-abs">
-            <a href="{{url('du-an/'.$project->alias.'.html')}}" title="{{$project->name}}">
-                <img src="{{asset('public/images/picture/zoom.png')}}" alt="{{$project->name}}" title="{{$project->name}}">
-            </a>
-            <p><a href="{{url('du-an/'.$project->alias.'.html')}}" title="{{$project->name}}">{{$project->name}}</a> </p>
-        </div>
-    </div>
-</div>
+@foreach($projects as $item)
+	<div class="col-lg-105 col-md-4 col-sm-6">
+		<div class="pj-item">
+			<figure class="text-center pj-item-img">
+				<a href="{{ url('du-an/'.$item->alias.'.html') }}" title=""><img src="{{asset('upload/news/'.$item->photo)}}" title="" alt="" title=""></a>
+			</figure>
+			
+			<figcaption class="pj-item-info">
+				<h3 class="text-center"><a href="{{ url('du-an/'.$item->alias.'.html') }}" title="">{{$item->name}}</a></h3>
+			</figcaption>
+		</div>
+	</div>
 @endforeach

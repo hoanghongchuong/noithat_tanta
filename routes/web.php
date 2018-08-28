@@ -19,6 +19,7 @@ Route::post('cartajax/add', ['as' => 'addProductToCartAjax', 'uses' => 'IndexCon
 
 Route::get('lien-he',['as'=>'getContact', 'uses'=>'ContactController@getContact']);
 Route::post('lien-he',['as'=>'postContact', 'uses'=>'ContactController@postContact']);
+Route::get('success', 'ContactController@success')->name('success');
 
 Route::get('tin-tuc',['as'=>'getNews', 'uses'=>'IndexController@getNews']);
 Route::get('tin-tuc/{id}.html',['as'=>'getNewsDetail', 'uses'=>'IndexController@getNewsDetail']);
@@ -37,11 +38,12 @@ Route::get('du-an', 'IndexController@duan')->name('duan');
 Route::get('du-an/{alias}.html', 'IndexController@detailProject');
 Route::get('du-an/{alias}', 'IndexController@listProject');
 
+
 // Ajax load more project
 Route::get('loadmore/project','IndexController@loadmoreProject')->name('loadmoreProject');
 
 
-Route::get('tim-kiem',['as'=>'searchNews', 'uses'=>'IndexController@search']);
+Route::get('tim-kiem',['as'=>'search', 'uses'=>'IndexController@search']);
 Route::post('newsletter',['as'=>'postNewsletter', 'uses'=>'IndexController@postNewsletter']);
 Route::get('san-pham',['as'=>'getProduct', 'uses'=>'IndexController@getProduct']);
 Route::get('san-pham/{alias}.html','IndexController@getProductDetail')->name('detailProduct');

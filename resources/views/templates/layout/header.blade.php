@@ -27,12 +27,11 @@
                         <div class="top-contact">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="top-search">
-                                    <form action="" class="trans d-flex align-items-center search-frm">
-                                        <input class="form-control light s14 search-ip" type="text" required="required" placeholder="Từ khóa tìm kiếm">
+                                    <form action="{{ route('search') }}" method="get" class="trans d-flex align-items-center search-frm">
+                                        <input class="form-control light s14 search-ip" name="txtSearch" type="text" required="required" placeholder="Tìm kiếm sản phẩm">
                                         <button class="btn search-btn"><img src="{{ asset('public/images/search.png')}}" alt="" title=""></button>
                                     </form>
                                 </div>
-
                                 <div class="d-flex align-items-center top-contact-sr">
                                     <img src="{{ asset('public/images/showroom.png')}}" title="" alt="" class="mr-2">
                                     <h3 class="s14 text-uppercase"><a href="{{url('showroom')}}" title=""><span class="d-lg-block d-none">Hệ thống </span>showroom</a></h3>
@@ -57,7 +56,7 @@
                     <nav id="menu" class="menu-wrap">
                         <ul class="menu medium text-uppercase">
                             <li class="@if(@$com == 'index') active @endif"><a href="{{ url('') }}" title="">Trang chủ</a></li>
-                            <li><a href="{{url('gioi-thieu')}}" title="">Giới thiệu</a></li>
+                            <li class="@if(@$com == 'gioi-thieu') active @endif"><a href="{{url('gioi-thieu')}}" title="">Giới thiệu</a></li>
                             @foreach($cateProject as $categoryProject)
                             <li>
                                 <a href="javascript:0;" title="">{{$categoryProject->name}}</a>
@@ -83,7 +82,7 @@
                                     @endforeach
                                 </ul>
                             </li>
-                            <li><a href="javascript:0;" title="">Phong cách thiết kế</a>
+                            <li class="@if(@$com == 'phongcach') active @endif"><a href="javascript:0;" title="">Phong cách thiết kế</a>
                                 <ul>
                                     @foreach($cateStyle as $style)
                                     <li><a href="{{url('phong-cach-thiet-ke/'.$style->alias.'-'.$style->id)}}" title="{{$style->name}}">{{$style->name}}</a></li>

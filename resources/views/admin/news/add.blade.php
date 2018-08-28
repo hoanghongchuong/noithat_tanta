@@ -78,9 +78,14 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									
+									@if($_GET['type']=='video')
 									<div class="form-group">
-								      	<label for="desc">@if($_GET['type']!='video')Mô tả @else Mã @endif</label>
+								      	<label for="desc">Mã video</label>
+								      	<input type="text" name="code" class="form-control">
+									</div>
+									@endif
+									<div class="form-group">
+								      	<label for="desc">Mô tả</label>
 								      	<textarea name="txtDesc"  rows="5" class="form-control"></textarea>
 									</div>
 									
@@ -146,20 +151,20 @@
 	            <div class="clearfix"></div>
 
 			    <div class="col-md-6">
-			    	@if($_GET['type']!='video' && $_GET['type']!='phongcach')
+			    	@if($_GET['type']!='video' && $_GET['type']!='phongcach' && $_GET['type']!='du-an')
 			    	<div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" >Nổi bật
 				    	</label>
 					</div>
 					@endif
-					<!-- @if($_GET['type']!='tin-tuc' && $_GET['type']!='tuyen-dung')
+					@if($_GET['type']=='video')
 					<div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="home"> Hiển thị trang chủ
 				    	</label>
 				    </div>
-				    @endif -->
+				    @endif
 			    	<div class="form-group">
 					      <label for="ten">Số thứ tự</label>
 					      <input type="number" min="1" name="stt" value="{!! count($data)+1 !!}" class="form-control" style="width: 100px;">

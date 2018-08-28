@@ -22,7 +22,7 @@
     <section class="mt-90 ic-detail">
         <div class="container">
             <div class="vwrap">
-                <iframe width="854" height="480" src="https://www.youtube.com/embed/{{$video->mota}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe width="854" height="480" src="https://www.youtube.com/embed/{{$video->code}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -46,20 +46,16 @@
                 @foreach($videoOther as $item)
                 <article class="video-item">
                     <figure class="text-center video-img">
-                        <a href="{{ url('video/'.$item->alias.'.html') }}" title="{{$item->name}}"><img src="https://i.ytimg.com/vi/{!! $item->mota !!}/hqdefault.jpg" alt="{{$item->name}}" title="{{$item->name}}"></a>
+                        <a href="{{ url('video/'.$item->alias.'.html') }}" title="{{$item->name}}"><img src="https://i.ytimg.com/vi/{!! $item->code !!}/hqdefault.jpg" alt="{{$item->name}}" title="{{$item->name}}"></a>
                     </figure>
-
                     <figcaption class="video-content">
                         <h3 class="medium py-2"><a href="{{ url('video/'.$item->alias.'.html') }}" title="{{$item->name}}">{{$item->name}}</a></h3>                        
                     </figcaption>
                 </article>
                 @endforeach
-
             </div>
         </div>
-    </section>
-
-    
+    </section>    
 
     <section class="b2 pt-4 break">
         <div class="container">

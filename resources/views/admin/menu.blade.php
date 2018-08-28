@@ -31,25 +31,7 @@
             <li><a href="backend/news?type=video"><i class="fa fa-circle-o"></i> <span>Danh sách </span></a></li>
           </ul>
         </li>
-        <!-- <li class="treeview ">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Quản lý nội thất</span> <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="backend/newscate?type=noi-that"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
-            <li><a href="backend/news?type=noi-that"><i class="fa fa-circle-o"></i> <span>Danh sách </span></a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Quản lý dự án</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">            
-            <li><a href="backend/newscate?type=du-an"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
-            <li><a href="backend/news?type=du-an"><i class="fa fa-circle-o"></i> <span>Danh sách dự án</span></a></li>            
-          </ul>
-        </li> -->
+       
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-edit"></i> <span>Phong cách thiết kế</span>
@@ -95,8 +77,9 @@
         </li>        
         <li><a href="backend/partner"><i class="fa fa-circle-o"></i> <span>Quản lý đối tác</span></a></li>
         <li><a href="backend/feedback"><i class="fa fa-gear" aria-hidden="true"></i> <span>Ý kiến khách hàng</span></a></li>
-        <li><a href="backend/contact"><i class="fa fa-envelope"></i> <span>Quản lý liên hệ</span></a></li>
-        <li><a href="backend/newsletter?type=newsletter"><i class="fa fa-circle-o"></i> <span>Đăng ký nhận tin</span></a></li>
+        <li><a href="backend/slogan"><i class="fa fa-gear"></i> <span>Quản lý slogan trang chủ</span></a></li>
+        <li><a href="backend/contact"><i class="fa fa-envelope"></i> <span>Đăng ký nhận tin</span></a></li>
+        <!-- <li><a href="backend/newsletter?type=newsletter"><i class="fa fa-circle-o"></i> <span>Đăng ký nhận tin</span></a></li> -->
         <!-- <li><a href="backend/chinhanh"><i class="fa fa-envelope"></i><span>Quản lý chi nhánh</span></a></li> -->
         <li class="treeview">
           <a href="#">

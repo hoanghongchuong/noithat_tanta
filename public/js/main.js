@@ -348,4 +348,34 @@ $(document).ready(function($) {
             $('.linkyoutube').attr('href', url);
         }
     }
+
+
+    var t = 0;
+    $.ajax({
+        type: "GET",
+        url: window.loadmoreProduct,
+        data: {
+            offset: 0,
+            limit: 15
+        },
+        success: function(e) {
+            e && ($(".result_product").append(e), t += 15)
+        }
+    }), 
+    
+    $(".btn-loadmore-product").click(function() {
+        $.ajax({
+            type: "GET",
+            url: window.loadmoreProduct,
+            data: {
+                offset: t,
+                limit: 15
+            },
+            success: function(e) {
+                e ? ($(".result_product").append(e), t += 15) : $(".btn-loadmore-product").hide()
+            }
+        })
+    })
+
+
 });

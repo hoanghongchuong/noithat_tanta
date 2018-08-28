@@ -45,7 +45,7 @@
 			<h2 class="s30 text-center pt-2 pb-4 pj-tit">{{ $cate->name }}</h2>
 
 			<div class="pt-4 inter-child-contain">
-				<div class="row inter-child-row">
+				<div class="row inter-child-row result_product">
 					
 					@foreach($projects as $item)
 					<div class="col-lg-105 col-md-4 col-sm-6">
@@ -63,7 +63,8 @@
 				</div>
 
 				<div class="text-center inter-child-link">
-					<a href="#" class="regis-btn btn" title="">Xem thêm</a>
+					<!-- <a href="javascript:;" class="regis-btn btn btn-loadmore-product" title="">Xem thêm</a> -->
+					{!! $projects->links() !!}
 				</div>
 			</div>
 		</div>

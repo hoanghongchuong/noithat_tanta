@@ -83,9 +83,9 @@
                                         <th>Họ tên</th>
                                         <th>Số điện thoại</th>
                                         <th>Email</th>
-                                        <th>Địa chỉ</th>
+                                        <!-- <th>Địa chỉ</th> -->
                                         <!-- <th>webiste</th> -->
-                                        <th>Nội dung</th>
+                                        <!-- <th>Nội dung</th> -->
                                         <!-- <th>Ngày gửi</th> -->
                                         <!-- <th class="text-center with_dieuhuong">Hoạt động</th> -->
                                         <th class="text-center with_dieuhuong">
@@ -109,9 +109,9 @@
                                         <td>{{$item->phone}}</td>
                                         <td>{{$item->email}}</td>
                                         <?php $address = DB::table('province')->where('id',$item->province_id)->first(); ?>
-                                        <td>{{ $item->name }}</td>
+                                        
                                         <!-- <td>{{ $item->website }}</td> -->
-                                        <td>{{$item->content}}</td>
+                                        <!-- <td>{{$item->content}}</td> -->
                                         
                                         <td class="text-center with_dieuhuong">
                                             <button class="btn-toggle-status btn btn-{{ !$item->status? 'warning btn-access' : 'success' }} btn-sm" contact-id="{{ $item->id }}">

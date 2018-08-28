@@ -96,8 +96,11 @@ class IndexController extends Controller {
 		$partners = DB::table('partner')->where('status',1)->orderBy('id','desc')->get();
 		$slogans = DB::table('slogan')->orderBy('stt','asc')->get();
 		$feedback = DB::table('feedback')->orderBy('id','desc')->get();
-		$news = DB::table('news')->where('status',1)->where('noibat',1)->where('com','tin-tuc')->take(20)->orderBy('id','desc')->get();
-		
+		$hotNews = DB::table('news')->where('status',1)->where('noibat',1)->where('com','tin-tuc')->take(20)->orderBy('id','desc')->get();
+		$videos = DB::table('news')->where('com','video')->get();
+		$video_one = DB::table('news')->where('com','video')->where('home',1)->first();
+		$banner = DB::table('banner_content')->where('position', 1)->first();
+		$cateProject = DB::table('news_categories')->where('com','du-an')->where('parent_id',0)->get();
 		$setting = Cache::get('setting');
 		$title = $setting->title;
 		$keyword = $setting->keyword;
@@ -107,7 +110,7 @@ class IndexController extends Controller {
 		// End cấu hình SEO
 		$img_share = asset('upload/hinhanh/'.$setting->photo);
 
-		return view('templates.index_tpl', compact('com','about','tintuc_moinhat','keyword','description','title','img_share','slider','news','partners','slogans','whys'));
+		return view('templates.index_tpl', compact('com','about','keyword','description','title','img_share','slider','hotNews','partners','slogans','whys','videos', 'video_one','banner','cateProject'));
 	}
 	public function getProduct(Request $req)
 	{
@@ -249,11 +252,12 @@ class IndexController extends Controller {
 		$keyword = "Tìm kiếm: ".$search;
 		$description = "Tìm kiếm: ".$search;
 		$img_share = '';		
-		$news = DB::table('news')->select()->where('name', 'LIKE', '%' . $search . '%')
-		->whereIn('com',['kien-truc', 'noi-that','phong-thuy','du-an'])
-		->orderBy('id','DESC')->get();
+		$products = DB::table('products')->where('status',1)->where('name', 'LIKE', '%' . $search . '%')->get();
+		// $news = DB::table('news')->select()->where('name', 'LIKE', '%' . $search . '%')
+		// ->whereIn('com',['kien-truc','tin-tuc','du-an'])
+		// ->orderBy('id','DESC')->get();
 		
-		return view('templates.search_tpl', compact('news','keyword','description','title','img_share','search'));
+		return view('templates.search_tpl', compact('products','keyword','description','title','img_share','search'));
 	}
 
 	public function getNews()
@@ -680,7 +684,7 @@ class IndexController extends Controller {
 		{
 			$ids[] = $child->id;
 		}
-		$projects = DB::table('news')->where('status', 1)->where('com', 'du-an')->whereIn('cate_id', $ids)->orderBy('stt', 'asc')->get();
+		$projects = DB::table('news')->where('status', 1)->where('com', 'du-an')->whereIn('cate_id', $ids)->orderBy('stt', 'asc')->paginate(25);
 		$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
 		if(!empty($cate->title)){
 				$title = $cate->title;
@@ -691,13 +695,20 @@ class IndexController extends Controller {
 			$description = $cate->description;
 		return view('templates.listduan', compact('projects','title','description', 'keyword','cate', 'sliders'));
 	}
+	public function loadmoreProject(Request $req)
+	{
+		$offset = $req->offset;
+		$limit = $req->limit;
+		$projects = DB::table('news')->where('com','du-an')->where('status',1)->skip($offset)->take($limit)->orderBy('stt','asc')->get();
+		// dd($projects);
+		return view('templates.loadmore_project', compact('projects'));
+	}
 	public function detailProject($alias)
 	{		
 		$project = DB::table('news')->where('status', 1)->where('com','du-an')->where('alias', $alias)->first();
 		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
-		$category = DB::table('news_categories')->where('id',$project->cate_id)->first();
-		dd($category);
-		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->take(4)->get();
+		$category = DB::table('news_categories')->where('id',$project->cate_id)->first();		
+		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->where('cate_id', $project->cate_id)->take(15)->get();
 		if(!empty($project->title)){
 				$title = $project->title;
 			}else{
@@ -705,7 +716,7 @@ class IndexController extends Controller {
 			}
 			$keyword = $project->keyword;
 			$description = $project->description;
-		return view('templates.detailproject', compact('project','title','description', 'keyword','projectOther','albums'))	;
+		return view('templates.detailproject', compact('project','title','description', 'keyword','projectOther','albums','category'))	;
 	}
 	
 
@@ -721,7 +732,8 @@ class IndexController extends Controller {
 			}
 			$keyword = $cate->keyword;
 			$description = $cate->description;
-		return view('templates.listvideo', compact('videos','title','description', 'keyword','cate','cateVideos'));
+			$com = 'video';
+		return view('templates.listvideo', compact('videos','title','description', 'keyword','cate','cateVideos','com'));
 	}
 
 	public function detailVideo($alias)
@@ -735,7 +747,8 @@ class IndexController extends Controller {
 			}
 			$keyword = $video->keyword;
 			$description = $video->description;
-		return view('templates.detailVideo', compact('video','title','description', 'keyword','videoOther'));
+			$com = 'video';
+		return view('templates.detailVideo', compact('video','title','description', 'keyword','videoOther','com'));
 	}
 
 	public function style($alias)
@@ -765,7 +778,8 @@ class IndexController extends Controller {
 			}
 			$keyword = $cate->keyword;
 			$description = $cate->description;
-		return view('templates.style', compact('cate', 'cateChilds', 'styles', 'description', 'keyword', 'title','cates','cateSam'));
+			$com='phongcach';
+		return view('templates.style', compact('cate', 'cateChilds', 'styles', 'description', 'keyword', 'title','cates','cateSam', 'com'));
 	}
 
 	public function detailStyle($alias)
@@ -788,14 +802,7 @@ class IndexController extends Controller {
 		return view('templates.detailStyle', compact('data', 'description','title', 'keyword','cate_data', 'categories', 'post'));
 	} 	
 
-	public function loadmoreProject(Request $req)
-	{
-		$offset = $req->offset;
-		$limit = $req->limit;
-		$projects = DB::table('news')->where('com','du-an-google')->where('status',1)->where('noibat',1)->skip($offset)->take($limit)->orderBy('stt','asc')->get();
-		// dd($projects);
-		return view('templates.loadmore_project', compact('projects'));
-	}
+	
 
 
 }

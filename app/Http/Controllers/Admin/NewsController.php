@@ -88,6 +88,7 @@ class NewsController extends Controller
         $news->mota = $request->txtDesc;
         $news->photo = $img_name;
         $news->background = $img_name2;
+        $news->code = $request->code;
         $news->title = $request->txtTitle;
         $news->content = $request->txtContent;
         $news->keyword = $request->txtKeyword;
@@ -255,6 +256,7 @@ class NewsController extends Controller
             }
             $news->noibat = $request->hotnews;
             $news->mota = $request->txtDesc;
+            $news->code = $request->code;
             $news->title = $request->txtTitle;
             $news->content = $request->txtContent;
             $news->keyword = $request->txtKeyword;

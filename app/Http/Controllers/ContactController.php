@@ -44,9 +44,14 @@ class ContactController extends Controller {
 		$data->website = $request->website;
 		$data->province_id = $request->province;
 		$data->save();		
-		echo "<script type='text/javascript'>
-			alert('Cảm ơn bạn đã gửi liên hệ. Chúng tôi sẽ liên hệ lại với bạn sớm nhất !');
-			window.location = '".url('/')."' </script>";
+		return redirect()->route('success');
+		// echo "<script type='text/javascript'>
+		// 	alert('Cảm ơn bạn đã gửi liên hệ. Chúng tôi sẽ liên hệ lại với bạn sớm nhất !');
+		// 	window.location = '".url('/')."' </script>";
+	}
+	public function success()
+	{
+		return view('templates.success');
 	}
 
 }
