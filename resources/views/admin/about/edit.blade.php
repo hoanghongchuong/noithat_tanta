@@ -26,7 +26,7 @@
       			<div class="nav-tabs-custom">
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>
-	                  	@if($_GET['type']=='gioi-thieu' || $_GET['type'] == 'chung-chi')
+	                  	@if($_GET['type']=='gioi-thieu' || $_GET['type'] == 'noi-that' || $_GET['type'] == 'ngoai-that')
 	                  	<li><a href="#tab_2" data-toggle="tab" aria-expanded="true">SEO</a></li>
 	                  	@endif
 	                </ul>

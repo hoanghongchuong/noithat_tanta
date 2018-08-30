@@ -3,7 +3,8 @@
     $categories = DB::table('product_categories')->where('parent_id',0)->get();
     $cateVideos = DB::table('news_categories')->where('com','video')->where('status',1)->get();
     $cateStyle = DB::table('news_categories')->where('com','phongcach')->where('parent_id', 0)->where('status',1)->get();
-    $cateProject = DB::table('news_categories')->where('com','du-an')->where('parent_id', 0)->where('status',1)->get();
+    $cateNoiThat = DB::table('news_categories')->where('com','noi-that')->get();
+    $cateNgoaiThat = DB::table('news_categories')->where('com','ngoai-that')->get();
 ?>
 <h1 class="sr-only">Tân Tạ</h1>
     <header class="fixed-top top">
@@ -57,17 +58,23 @@
                         <ul class="menu medium text-uppercase">
                             <li class="@if(@$com == 'index') active @endif"><a href="{{ url('') }}" title="">Trang chủ</a></li>
                             <li class="@if(@$com == 'gioi-thieu') active @endif"><a href="{{url('gioi-thieu')}}" title="">Giới thiệu</a></li>
-                            @foreach($cateProject as $categoryProject)
-                            <li>
-                                <a href="javascript:0;" title="">{{$categoryProject->name}}</a>
+                            
+                            <li class="@if(@$com == 'noi-that') active @endif"">
+                                <a href="{{url('thiet-ke-thi-cong-noi-that')}}" title="Thiết kế thi công nội thất">Thiết kế thi công nội thất</a>
                                 <ul>
-                                    <?php $cateChildProject = DB::table('news_categories')->where('parent_id', $categoryProject->id)->get(); ?>
-                                    @foreach($cateChildProject as $cate_project)
-                                    <li><a href="{{url('du-an/'.$cate_project->alias.'-'.$cate_project->id)}}" title="{{$cate_project->name}}">{{$cate_project->name}}</a></li>
-                                    @endforeach
+                                @foreach($cateNoiThat as $cateN)                                 
+                                    <li><a href="{{ url('thiet-ke-thi-cong-noi-that/'.$cateN->alias) }}" title="{{$cateN->name}}">{{$cateN->name}}</a></li>
+                                @endforeach                                
                                 </ul>
                             </li>
-                            @endforeach
+                            <li class="@if(@$com == 'ngoai-that') active @endif"">
+                                <a href="{{url('thiet-ke-thi-cong-ngoai-that')}}" title="Thiết kế thi công ngoại thất">Thiết kế thi công ngoại thất</a>
+                                <ul>
+                                    @foreach($cateNgoaiThat as $cate)                                 
+                                        <li><a href="{{ url('thiet-ke-thi-cong-ngoai-that/'.$cate->alias) }}" title="{{$cate->name}}">{{$cate->name}}</a></li>
+                                    @endforeach      
+                                </ul>
+                            </li>
                             <li class="wire-menu @if(@$com == 'san-pham') active @endif"><a href="{{url('san-pham')}}" title="">Sản phẩm</a>
                                 <ul>
                                     @foreach($categories as $category)

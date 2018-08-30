@@ -28,16 +28,16 @@
 					<div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
 						<label for="file">File ảnh</label>
 				     	<input type="file" id="file" name="fImages" >
-				    	<p class="help-block">Width:225px - Height: 162px</p>
+				    	<p class="help-block">Dung lượng ảnh không vượt quá 2MB</p>			
 				    	@if ($errors->first('fImages')!='')
 				      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 				      	@endif
 					</div>
-					@if($_GET['type']=='marketing')
+					@if($_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 					<div class="form-group col-md-12 ">
-						<label for="file">File ảnh 2</label>
+						<label for="file">Background</label>
 				     	<input type="file" id="file" name="fImages2" >
-				    	<p class="help-block">Width:225px - Height: 162px</p>				    	
+				    	<p class="help-block">Dung lượng ảnh không vượt quá 2MB</p>				    	
 					</div>
 					@endif
 					<div class="clearfix"></div>
@@ -70,7 +70,7 @@
 					<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 				</div>
 				<div class="col-md-12 col-xs-12">
-					@if($_GET['type']=='content')
+					@if($_GET['type']=='content' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 					<div class="box box-info">
 		                <div class="box-header">
 		                  	<h3 class="box-title">Nội dung</h3>

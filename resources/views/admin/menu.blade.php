@@ -15,16 +15,32 @@
         </li>
         <li class="treeview ">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Quản lý dự án</span> <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-dashboard"></i> <span>Thiết kế thi công nội thất</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a href="backend/newscate?type=du-an"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
-            <li><a href="backend/news?type=du-an"><i class="fa fa-circle-o"></i> <span>Danh sách </span></a></li>
+            <li><a href="backend/newscate?type=noi-that"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
+            <li>
+                <a href="backend/about/edit?type=noi-that"><i class="fa fa-circle-o"></i> <span>Mô tả</span></a>
+            </li>
+            <li><a href="backend/news?type=noi-that"><i class="fa fa-circle-o"></i> <span>Danh sách dự án </span></a></li>
+            <li><a href="backend/lienket?type=noi-that"><i class="fa fa-gear" aria-hidden="true"></i> <span>Quy trình</span></a></li>
           </ul>
         </li>
         <li class="treeview ">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Quản lý video</span> <i class="fa fa-angle-left pull-right"></i>
+            <i class="fa fa-dashboard"></i> <span>Thiết kế thi công ngoại thất</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="backend/newscate?type=ngoai-that"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>
+            <li>
+                <a href="backend/about/edit?type=ngoai-that"><i class="fa fa-circle-o"></i> <span>Mô tả</span></a>
+            </li>
+            <li><a href="backend/news?type=ngoai-that"><i class="fa fa-circle-o"></i> <span>Danh sách dự án </span></a></li>
+          </ul>
+        </li>
+        <li class="treeview ">
+          <a href="#">
+            <i class="fa fa-circle-o"></i> <span>Quản lý video</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
             <li><a href="backend/newscate?type=video"><i class="fa fa-circle-o"></i> <span>Danh mục</span></a></li>

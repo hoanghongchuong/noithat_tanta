@@ -55,10 +55,10 @@
                             <li><a href="{{url('gioi-thieu')}}" title="">
                                 Giới thiệu doanh nghiệp
                             </a></li>
-                            <li><a href="inter.html" title="">
+                            <li><a href="#" title="">
                                 Quy trình thiết kế
                             </a></li>
-                            <li><a href="inter.html" title="">
+                            <li><a href="#" title="">
                                 Quy trình thi công
                             </a></li>
                             <li><a href="{{url('tin-tuc')}}" title="">
@@ -84,7 +84,7 @@
                 </ul>
 
                 <div class="text-center op6 ft-info">
-                    <h2>&copy; 2017 - Công ty TNHH TM - DV HTL Việt Nam. Trụ sở: Tầng 2, nhà 1A, ngõ 199 đường Trường Chinh, Phường Khương Mai, Quận Thanh Xuân.</h2>
+                    <h2>&copy; {{@$setting->company}}. Trụ sở: {{$setting->address}}</h2>
                     <h3>Giấy chứng nhận Đăng ký kinh doanh số 010435607 do KHĐT TP Hà Nội cấp ngày 05/01/2010</h3>
                 </div>
             </div>

@@ -6,9 +6,8 @@
     $setting = Cache::get('setting');
     $banner = DB::table('banner_content')->where('position', 9)->first();
 ?>
-
 <main class="b1 index">
-    <section class="bread-wrap ic-detail-bread" style="background: url({{ asset('upload/banner/'.@$banner->image)  }})>
+    <section class="bread-wrap ic-detail-bread" style="background: url({{ asset('upload/banner/'.@$banner->image)  }})">
         <div class="container">
             <h1 class="t3 text-center s30 bread-tit">{{ $video->name }}</h1>
             <ul class="s15 list-unstyled justify-content-center bread op7 text-center">
@@ -18,7 +17,6 @@
             </ul>
         </div>
     </section>
-
     <section class="mt-90 ic-detail">
         <div class="container">
             <div class="vwrap">
@@ -26,7 +24,6 @@
             </div>
         </div>
     </section>
-
     <section class="b2">
         <div class="container">
             <div class="row justify-content-center">
@@ -38,7 +35,6 @@
             </div>
         </div>
     </section>
-
     <section class="b2 pb-4 vdetail">
         <div class="container">
             <h2 class="s24 pt-4 video-tit">Video liên quan</h2>
@@ -55,8 +51,7 @@
                 @endforeach
             </div>
         </div>
-    </section>    
-
+    </section>
     <section class="b2 pt-4 break">
         <div class="container">
             <div class="break-wrap" style="background: url({{ asset('public/images/break.jpg') }})">
@@ -82,5 +77,4 @@
         </div>
     </section>
 </main>
-
 @endsection

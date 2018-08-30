@@ -650,6 +650,103 @@ class IndexController extends Controller {
     	dd($price);
     }
 
+    public function noiThat()
+    {
+    	$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
+    	$categories = DB::table('news_categories')->where('com','noi-that')->get();
+    	$mota = DB::table('about')->where('com','noi-that')->first();
+    	$hotProject = DB::table('news')->where('com','noi-that')->where('noibat',1)->take(15)->get();
+    	$com = 'noi-that';
+    	$steps = DB::table('lienket')->where('com','noi-that')->orderBy('stt','asc')->get();
+    	if(!empty($mota->title)){
+			$title = $mota->title;
+		}else{
+			$title = $mota->name;
+		}
+		$keyword = $mota->keyword;
+		$description = $mota->description;
+    	return view('templates.noithat', compact('sliders','categories', 'com','mota','title','keyword','description', 'hotProject','steps'));
+    }
+    public function ngoaiThat()
+    {
+    	$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
+    	$categories = DB::table('news_categories')->where('com','noi-that')->get();
+    	$mota = DB::table('about')->where('com','ngoai-that')->first();
+    	$hotProject = DB::table('news')->where('com','ngoai-that')->where('noibat',1)->take(15)->get();
+    	$com = 'noi-that';
+    	$steps = DB::table('lienket')->where('com','ngoai-that')->orderBy('stt','asc')->get();
+    	if(!empty($mota->title)){
+			$title = $mota->title;
+		}else{
+			$title = $mota->name;
+		}
+		$keyword = $mota->keyword;
+		$description = $mota->description;
+    	return view('templates.ngoaithat', compact('sliders','categories', 'com','mota','title','keyword','description', 'hotProject','steps'));
+    }
+    public function listNoiThat($alias){
+    	$cate = DB::table('news_categories')->where('com','noi-that')->where('alias',$alias)->first();
+    	$data = DB::table('news')->where('com','noi-that')->where('cate_id', $cate->id)->orderBy('stt','asc')->paginate(25);
+    	$com = 'noi-that';
+    	$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
+    	if(!empty($cate->title)){
+			$title = $cate->title;
+		}else{
+			$title = $cate->name;
+		}
+		$keyword = $cate->keyword;
+		$description = $cate->description;
+    	return view('templates.listnoithat', compact('cate','data','title','description','keyword','com','sliders'));
+    }
+
+    public function detailNoiThat($alias)
+    {
+    	$project = DB::table('news')->where('status', 1)->where('com','noi-that')->where('alias', $alias)->first();
+		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
+		$category = DB::table('news_categories')->where('id',$project->cate_id)->first();		
+		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->where('cate_id', $project->cate_id)->take(15)->get();
+		if(!empty($project->title)){
+				$title = $project->title;
+			}else{
+				$title = $project->name;
+			}
+			$keyword = $project->keyword;
+			$description = $project->description;
+		return view('templates.detailNoiThat', compact('project','title','description', 'keyword','projectOther','albums','category'));
+    }
+
+    public function listNgoaiThat($alias){
+    	$cate = DB::table('news_categories')->where('com','ngoai-that')->where('alias',$alias)->first();
+    	// dd($cate);
+    	$data = DB::table('news')->where('com','ngoai-that')->where('cate_id', $cate->id)->orderBy('stt','asc')->paginate(25);
+    	$com = 'ngoai-that';
+    	$sliders = DB::table('slider')->where('com','gioi-thieu')->get();
+    	if(!empty($cate->title)){
+			$title = $cate->title;
+		}else{
+			$title = $cate->name;
+		}
+		$keyword = $cate->keyword;
+		$description = $cate->description;
+    	return view('templates.listnoithat', compact('cate','data','title','description','keyword','com','sliders'));
+    }
+
+    public function detailNgoaiThat($alias)
+    {
+    	$project = DB::table('news')->where('status', 1)->where('com','ngoai-that')->where('alias', $alias)->first();
+		$albums = DB::table('images')->where('news_id', $project->id)->orderBy('id','asc')->get();
+		$category = DB::table('news_categories')->where('id',$project->cate_id)->first();		
+		$projectOther = DB::table('news')->where('status', 1)->where('com', $project->com)->where('cate_id', $project->cate_id)->take(15)->get();
+		if(!empty($project->title)){
+				$title = $project->title;
+			}else{
+				$title = $project->name;
+			}
+			$keyword = $project->keyword;
+			$description = $project->description;
+		return view('templates.detailNoiThat', compact('project','title','description', 'keyword','projectOther','albums','category'));
+    }
+
     public function duan()
 	{
 		$projects = DB::table('news')
@@ -802,7 +899,11 @@ class IndexController extends Controller {
 		return view('templates.detailStyle', compact('data', 'description','title', 'keyword','cate_data', 'categories', 'post'));
 	} 	
 
-	
+	// public function processDesign()
+	// {
+		
+	// 	return view('templates.processDesign');
+	// }
 
 
 }

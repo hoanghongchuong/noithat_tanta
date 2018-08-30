@@ -32,7 +32,7 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
-									@if($_GET['type']=='video' || $_GET['type']=='du-an')
+									@if($_GET['type']=='video' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 			                    	<div class="form-group @if ($errors->first('fImages')!='') has-error @endif">
 										<div class="form-group">
 											<img src="{{ asset('upload/news/'.$data->photo) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" class="img-responsive"  alt="NO PHOTO" />
@@ -40,17 +40,16 @@
 										</div>
 										<label for="file">Chọn File ảnh</label>
 								     	<input type="file" id="file" name="fImages" >
-								    	<p class="help-block">Width:800px - Height: 326px</p>
+								    	<p class="help-block">Dung lượng ảnh nhỏ hơn 2MB</p>
 								    	@if ($errors->first('fImages')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
 									@endif
-									@if($_GET['type']!='video')
+									@if($_GET['type']!='video' && $_GET['type']!='noi-that' && $_GET['type']!='ngoai-that')
 						        	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
-
 								      		<option value="0">Chọn danh mục</option>
 								      		<?php cate_news_parent($parent,0,"--",$data["parent_id"]) ?>
 								      	</select>
@@ -70,7 +69,7 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									@if($_GET['type']=='du-an')
+									@if($_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
 								      	<textarea name="txtDesc" rows="5" id="txtContent" class="form-control">{!! old('txtDesc', isset($data) ? $data->mota : null) !!}</textarea>
@@ -79,20 +78,20 @@
 									<input type="hidden" name="txtCom" value="{{ @$_GET['type'] }}"/>
 								</div>
 								<div class="col-md-6 col-xs-12">
-									@if($_GET['type']=='dich-vu')
+									@if($_GET['type']=='dich-vu' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 									<div class="form-group @if ($errors->first('fImagesBg')!='') has-error @endif">
 										<div class="form-group">
 											<div class="img_backgound">
-												<img src="{{ asset('upload/news/'.$data->background) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" width="200"  alt="NO PHOTO" />
+												<img src="{{ asset('upload/news/'.$data->background) }}" onerror="this.src='{{asset('public/admin_assets/images/no-image.jpg')}}'" width="300"  alt="NO PHOTO" />
 												<input type="hidden" name="img_current2" value="{!! @$data->background !!}">
 												@if(!empty($data->background))
 												<a href="{!! asset('admin/newscate/edit?id='.$id.'&type='.@$_GET['type'].'&delete_bg='.@$data->background) !!}" class="img_bg"><img src="{!! asset('public/admin_assets/images/del.png') !!}" alt="Xóa hình"></a>
 												@endif
 											</div>
 										</div>
-										<label for="file">Chọn background</label>
+										<label for="file">Chọn ảnh lớn</label>
 								     	<input type="file" id="file" name="fImagesBg" >
-								    	<p class="help-block">Width:225px - Height: 162px</p>
+								    	<p class="help-block">Dung lượng ảnh nhỏ hơn 2MB</p>
 								    	@if ($errors->first('fImagesBg')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImagesBg'); !!}</label>
 								      	@endif

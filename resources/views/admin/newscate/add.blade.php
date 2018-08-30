@@ -34,17 +34,17 @@
 	                  	<div class="tab-pane active" id="tab_1">
 	                  		<div class="row">
 		                  		<div class="col-md-6 col-xs-12">
-		                  			@if($_GET['type']=='video' || $_GET['type']=='du-an')
+		                  			@if($_GET['type']=='video' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 		                  			<div class="form-group col-md-12 @if ($errors->first('fImages')!='') has-error @endif">
 										<label for="file">File ảnh</label>
 								     	<input type="file" id="file" name="fImages" >
-								    	<p class="help-block">Width:800px - Height: 326px</p>
+								    	<p class="help-block">Dung lượng ảnh nhỏ hơn 2MB</p>
 								    	@if ($errors->first('fImages')!='')
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImages'); !!}</label>
 								      	@endif
 									</div>
 									@endif
-									@if($_GET['type']!='video')
+									@if($_GET['type']!='video' && $_GET['type']!='noi-that' && $_GET['type']!='ngoai-that')
 			                    	<div class="form-group">
 								      	<label for="ten">Danh mục cha</label>
 								      	<select name="txtNewsCate" class="form-control">
@@ -68,7 +68,7 @@
 								      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('txtAlias'); !!}</label>
 								      	@endif
 									</div>
-									@if($_GET['type']=='du-an')
+									@if($_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 									<div class="form-group">
 								      	<label for="mota">Mô tả</label>
 								      	<textarea name="txtDesc" rows="5" id="txtContent" class="form-control"></textarea>
@@ -78,11 +78,11 @@
 								</div>
 								<div class="col-md-6 col-xs-12">
 									<div class="col-md-6 col-xs-12">
-										@if($_GET['type']=='dich-vu')
+										@if($_GET['type']=='dich-vu' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 										<div class="form-group col-md-12 @if ($errors->first('fImagesBg')!='') has-error @endif">
-											<label for="file">File background</label>
+											<label for="file">Ảnh lớn</label>
 									     	<input type="file" id="file" name="fImagesBg" >
-									    	<p class="help-block">Width:225px - Height: 162px</p>
+									    	<p class="help-block">Dung lượng ảnh nhỏ hơn 2MB</p>
 									    	@if ($errors->first('fImagesBg')!='')
 									      	<label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i> {!! $errors->first('fImagesBg'); !!}</label>
 									      	@endif

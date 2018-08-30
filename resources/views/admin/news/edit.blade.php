@@ -27,7 +27,7 @@
 	                <ul class="nav nav-tabs">
 	                  	<li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="false">Thông tin chung</a></li>	                  	
 	                  	<li><a href="#tab_2" data-toggle="tab" aria-expanded="true">Nội dung</a></li>
-	                  	@if($_GET['type']=='du-an')
+	                  	@if($_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 	                  	<li><a href="#tab_3" data-toggle="tab" aria-expanded="true">Album ảnh</a></li>
 	                  	@endif
 	                  	<li><a href="#tab_4" data-toggle="tab" aria-expanded="true">SEO</a></li>
@@ -51,7 +51,7 @@
 									</div>	
 									@endif								
 									<div class="clearfix"></div>
-									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video' || $_GET['type']=='phongcach' || $_GET['type']=='du-an')
+									@if($_GET['type']=='tin-tuc' || $_GET['type']=='video' || $_GET['type']=='phongcach' || $_GET['type']=='noi-that' || $_GET['type']=='ngoai-that')
 									<div class="form-group">
 								      	<label for="ten">Danh mục bài viết</label>
 								      	<select name="txtNewsCate" class="form-control">
@@ -172,7 +172,7 @@
 				        	<input type="checkbox" name="status" {!! (!isset($data->status) || $data->status==1)?'checked="checked"':'' !!}> Hiển thị
 				    	</label>
 				    </div>
-				    @if($_GET['type']!='video' && $_GET['type']!='phongcach' && $_GET['type']!='du-an')
+				    @if($_GET['type']!='video' && $_GET['type']!='phongcach' )
 				    <div class="form-group">
 					    <label>
 				        	<input type="checkbox" name="noibat" 

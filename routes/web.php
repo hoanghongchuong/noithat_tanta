@@ -29,10 +29,19 @@ Route::get('video', 'IndexController@video')->name('video');
 Route::get('video/{alias}.html', 'IndexController@detailVideo');
 Route::get('video/{alias}', 'IndexController@listVideo');
 
+// Route::get('quy-trinh-thiet-ke', 'IndexController@processDesign');
+// Route::get('quy-trinh-thi-cong', 'IndexController@processWork');
 
 Route::get('phong-cach-thiet-ke/{alias}.html', 'IndexController@detailStyle');
 Route::get('phong-cach-thiet-ke/{alias}', 'IndexController@style');
 
+Route::get('thiet-ke-thi-cong-noi-that', 'IndexController@noiThat');
+Route::get('thiet-ke-thi-cong-noi-that/{alias}.html', 'IndexController@detailNoiThat');
+Route::get('thiet-ke-thi-cong-noi-that/{alias}', 'IndexController@listNoiThat');
+
+Route::get('thiet-ke-thi-cong-ngoai-that', 'IndexController@ngoaiThat');
+Route::get('thiet-ke-thi-cong-ngoai-that/{alias}.html', 'IndexController@detailNgoaiThat');
+Route::get('thiet-ke-thi-cong-ngoai-that/{alias}', 'IndexController@listNgoaiThat');
 
 Route::get('du-an', 'IndexController@duan')->name('duan');
 Route::get('du-an/{alias}.html', 'IndexController@detailProject');
@@ -54,7 +63,9 @@ Route::get('thanh-toan',['as'=>'thanhtoan', 'uses' => 'IndexController@thanhtoan
 // Route::get('danh-muc/{alias}',['as'=>'getProductChild', 'uses'=>'IndexController@getProductChild']);
 
 Route::get('filter','IndexController@filter')->name('filter');
+
 Route::get('ajax/province/{id}',['as'=>'loadDistrictByProvince', 'uses'=>'IndexController@loadDistrictByProvince']);
+
 Route::get('sap-xep','IndexController@SapXep')->name('sapxep');
 
 // dang ky, dang nhap
